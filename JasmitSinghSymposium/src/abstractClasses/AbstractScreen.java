@@ -6,8 +6,8 @@ import java.util.List;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 
-public class MainScreen extends FullFunctionScreen {
-	
+public abstract class AbstractScreen extends FullFunctionScreen {
+
 	private static Color a = new Color(47, 48, 66);			//background color
 	private static Color b = new Color(250, 109, 109);
 	private static Color c = new Color(11, 156, 250);
@@ -16,14 +16,14 @@ public class MainScreen extends FullFunctionScreen {
 	private static Color f = new Color(153, 217, 234);
 	private static Color g = new Color(153, 217, 234);
 
-	public MainScreen(int width, int height) {
+	public AbstractScreen(int width, int height) {
 		super(width, height);
 	}
 
 	public void initAllObjects(List<Visible> viewObjects) {
-		setBackground(Color.RED);
+		
 	}
-	
+
 	public static Color getA() {
 		return a;
 	}

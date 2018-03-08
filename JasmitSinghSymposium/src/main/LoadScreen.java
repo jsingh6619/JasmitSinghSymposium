@@ -3,10 +3,10 @@ package main;
 import java.awt.TextArea;
 import java.util.List;
 
-import abstractClasses.MainScreen;
+import abstractClasses.AbstractScreen;
 import guiTeacher.interfaces.Visible;
 
-public class LoadScreen extends MainScreen {
+public class LoadScreen extends AbstractScreen {
 
 	public LoadScreen(int width, int height) {
 		super(width, height);

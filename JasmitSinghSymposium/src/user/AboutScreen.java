@@ -2,19 +2,16 @@ package user;
 
 import java.util.List;
 
-import abstractClasses.MainScreen;
+import abstractClasses.AbstractScreen;
 import guiTeacher.interfaces.Visible;
 
-public class AboutScreen extends MainScreen {
+public class AboutScreen extends AbstractScreen {
 
 	public AboutScreen(int width, int height) {
 		super(width, height);
-		// TODO Auto-generated constructor stub
 	}
 
-	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		// TODO Auto-generated method stub
 
 	}
 

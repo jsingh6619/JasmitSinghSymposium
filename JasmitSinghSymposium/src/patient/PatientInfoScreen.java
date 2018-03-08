@@ -1,18 +1,17 @@
-package user;
+package patient;
 
 import java.util.List;
 
 import abstractClasses.AbstractScreen;
 import guiTeacher.interfaces.Visible;
 
-public class CalendarScreen extends AbstractScreen {
+public class PatientInfoScreen extends AbstractScreen {
 
-	public CalendarScreen(int width, int height) {
+	public PatientInfoScreen(int width, int height) {
 		super(width, height);
 	}
-
+	
 	public void initAllObjects(List<Visible> viewObjects) {
 
 	}
-
 }

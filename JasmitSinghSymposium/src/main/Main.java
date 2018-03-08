@@ -1,5 +1,6 @@
 package main;
 
+import abstractClasses.MainScreen;
 import guiTeacher.GUIApplication;
 
 public class Main extends GUIApplication {
@@ -13,7 +14,6 @@ public class Main extends GUIApplication {
 		setVisible(true);
 	}
 
-	@Override
 	public void initScreen() {
 		loadScreen = new LoadScreen(getWidth(), getHeight());
 		setScreen(loadScreen);

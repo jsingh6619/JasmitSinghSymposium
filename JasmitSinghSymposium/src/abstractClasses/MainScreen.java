@@ -21,6 +21,34 @@ public class MainScreen extends FullFunctionScreen {
 	}
 
 	public void initAllObjects(List<Visible> viewObjects) {
+		setBackground(Color.RED);
+	}
+	
+	public static Color getA() {
+		return a;
 	}
 
+	public static Color getB() {
+		return b;
+	}
+
+	public static Color getC() {
+		return c;
+	}
+
+	public static Color getD() {
+		return d;
+	}
+
+	public static Color getE() {
+		return e;
+	}
+
+	public static Color getF() {
+		return f;
+	}
+
+	public static Color getG() {
+		return g;
+	}
 }

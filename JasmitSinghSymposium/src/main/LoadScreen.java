@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.TextArea;
 import java.util.List;
 
 import abstractClasses.MainScreen;
@@ -10,9 +11,9 @@ public class LoadScreen extends MainScreen {
 	public LoadScreen(int width, int height) {
 		super(width, height);
 	}
-
+	
 	public void initAllObjects(List<Visible> viewObjects) {
-
+		
 	}
 
 }

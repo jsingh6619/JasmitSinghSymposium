@@ -1,10 +1,12 @@
 package abstractClasses;
 
-import java.awt.Color;
+import java.awt.*;
+
 import java.util.List;
 
-import guiTeacher.interfaces.Visible;
-import guiTeacher.userInterfaces.FullFunctionScreen;
+import guiTeacher.components.*;
+import guiTeacher.interfaces.*;
+import guiTeacher.userInterfaces.*;
 
 public abstract class AbstractScreen extends FullFunctionScreen {
 
@@ -21,7 +23,6 @@ public abstract class AbstractScreen extends FullFunctionScreen {
 	}
 
 	public void initAllObjects(List<Visible> viewObjects) {
-		
 	}
 
 	public static Color getA() {

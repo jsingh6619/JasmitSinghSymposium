@@ -13,12 +13,7 @@ public class LoadScreen extends AbstractScreen {
 	}
 	
 	public void initAllObjects(List<Visible> viewObjects) {
-		Button user = new Button(100, 100, 100, 100, "HI", getB(), new Action() {
-			public void act() {
-				Main.main.setScreen(Main.userInfoScreen);
-			}
-		});
-		viewObjects.add(user);
+		
 	}
 
 }

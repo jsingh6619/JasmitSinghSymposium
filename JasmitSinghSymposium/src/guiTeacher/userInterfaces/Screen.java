@@ -30,6 +30,11 @@ import java.util.ArrayList;
 
 import guiTeacher.interfaces.Visible;
 
+/**
+ * A Screen is a ComponentContainer that fills a Window. Screens do not listen for any events (MouseClicks, Typing, etc..) For a Screen that listens, use ClickableScreen of FullFunctionScreen. For a screen with a set size, override the resize method
+ * @author bnockles
+ *
+ */
 public abstract class Screen extends ComponentContainer{
 
 	
@@ -42,17 +47,24 @@ public abstract class Screen extends ComponentContainer{
 		super(width,height,initWithObjects);
 		
 	}
+	
 
+	
 	public void update(Graphics2D g){
 		BufferedImage buffer = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2 = buffer.createGraphics();
 		g2.setRenderingHint( RenderingHints.KEY_ANTIALIASING,
 	             RenderingHints.VALUE_ANTIALIAS_ON);
-		g2.setColor(Color.white);
-		g2.fillRect(0, 0, getImage().getWidth(), getImage().getHeight());
+		drawBackground(g2);
 		g2.setColor(Color.black);
 		drawObjects(g2);
 		g.drawImage(buffer, 0, 0, null);
+	}
+
+
+	protected void drawBackground(Graphics2D g2) {
+		g2.setColor(getScreenBackground());
+		g2.fillRect(0, 0, getImage().getWidth(), getImage().getHeight());
 	}
 
 	public MouseListener getMouseListener() {
@@ -70,6 +82,7 @@ public abstract class Screen extends ComponentContainer{
 	public MouseWheelListener getMouseWheelListener(){
 		return null;
 	}
+
 
 
 

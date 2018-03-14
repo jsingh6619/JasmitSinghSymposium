@@ -1,3 +1,5 @@
+//no more than 5 doctors could be put on the application - set limit on later date
+
 package main;
 
 import java.io.File;
@@ -14,25 +16,28 @@ public class UserScreen extends AbstractScreen {
 	
 	private ArrayList<String> docName;
 	private int docs;
+	private String doctor;
 	
 	public UserScreen(int width, int height) {
 		super(width, height);
 	}
 
 	public void initAllObjects(List<Visible> viewObjects) {
+		setBackground(getA());
 		docName = new ArrayList<String>();
 		docs = numberOfUsers();
+		System.out.println(docs);
 		for(int i = 0; i < docs; i++) {
-			Button user = new Button(100, 100, 100, 100, docName.get(i), getB(), new Action() {
+			Button user = new Button(350 + 150+i, 300, 100, 100, docName.get(i), getB(), new Action() {
 				public void act() {
-					Main.main.setDoctor("Doctor");
+					//Main.setDoctor(user.getText());
 					Main.main.setScreen(Main.userInfoScreen);
 				}
 			});
 			AbstractButton.circleButton(user);
 			viewObjects.add(user);
 		}
-		System.out.println(docName.size());
+		System.out.print(docName.size());
 	}
 		//need to keep track of what doctor folder and what patient text file the user has selected
 	

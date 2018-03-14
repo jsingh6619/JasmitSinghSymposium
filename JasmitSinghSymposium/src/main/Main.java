@@ -19,7 +19,8 @@ public class Main extends GUIApplication {
 	public static PatientsScreen patientsScreen;
 	public static PrescriptionsScreen prescriptionsScreen;
 	public static VisitsScreen visitsScreen;
-	public static String doctor = "";
+	public static String doctor;
+	public static String patient;
 
 	public Main(int width, int height) {
 		super(width, height);
@@ -39,20 +40,21 @@ public class Main extends GUIApplication {
 		patientsScreen = new PatientsScreen(getWidth(), getHeight());
 		prescriptionsScreen = new PrescriptionsScreen(getWidth(), getHeight());
 		visitsScreen = new VisitsScreen(getWidth(), getHeight());
-		setScreen(userScreen);
+		setScreen(userInfoScreen);
 	}
 
 	public static void main(String[] args) {
+		doctor = "Noor Smith";
 		main = new Main(1280, 720);
 		Thread runner = new Thread(main);
 		runner.start();
 	}
 
-	public String getDoctor() {
+	public static String getDoctor() {
 		return doctor;
 	}
 
-	public void setDoctor(String doctor) {
+	public static void setDoctor(String doctor) {
 		Main.doctor = doctor;
 	}
 }

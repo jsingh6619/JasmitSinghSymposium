@@ -16,7 +16,7 @@ public abstract class AbstractScreen extends FullFunctionScreen {
 	private static Color d = new Color(250, 53, 203);
 	private static Color e = new Color(178, 250, 241);
 	private static Color f = new Color(153, 217, 234);
-	private static Color g = new Color(153, 217, 234);
+	private static Color g = new Color(250, 235, 229);
 
 	public AbstractScreen(int width, int height) {
 		super(width, height);

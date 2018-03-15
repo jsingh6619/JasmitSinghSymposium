@@ -11,10 +11,12 @@ import abstractClasses.AbstractScreen;
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.interfaces.Visible;
+import user.UserInfoScreen;
 
 public class UserScreen extends AbstractScreen {
 	
 	private ArrayList<String> docName;
+	private ArrayList<String> textButton;
 	private int docs;
 	private String doctor;
 	
@@ -25,21 +27,22 @@ public class UserScreen extends AbstractScreen {
 	public void initAllObjects(List<Visible> viewObjects) {
 		setBackground(getA());
 		docName = new ArrayList<String>();
+		textButton = new ArrayList<String>();
 		docs = numberOfUsers();
-		System.out.println(docs);
 		for(int i = 0; i < docs; i++) {
-			Button user = new Button(350 + 150+i, 300, 100, 100, docName.get(i), getB(), new Action() {
+			System.out.println(docName.get(i));
+			int x = i;
+			Button user = new Button(350 + 150*i, 300, 100, 100, docName.get(i), getB(), new Action() {
 				public void act() {
-					//Main.setDoctor(user.getText());
-					Main.main.setScreen(Main.userInfoScreen);
+					Main.setDoctor(textButton.get(x));
+					Main.main.setScreen(new UserInfoScreen(getWidth(), getHeight()));
 				}
 			});
+			textButton.add(user.getText());
 			AbstractButton.circleButton(user);
 			viewObjects.add(user);
 		}
-		System.out.print(docName.size());
 	}
-		//need to keep track of what doctor folder and what patient text file the user has selected
 	
 	public int numberOfUsers() {
 		int numberOfUsers = 0;

@@ -20,6 +20,6 @@ public abstract class AbstractButton extends Button {
 	
 	public static void circleButton(Button b){
 		b.setDimensions(b.getWidth(), b.getWidth());
-		b.setCurve(90, 90);
+		b.setCurve(b.getWidth(), b.getWidth());
 	}
 }

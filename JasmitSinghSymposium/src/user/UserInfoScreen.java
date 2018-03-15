@@ -50,8 +50,6 @@ public class UserInfoScreen extends AbstractScreen {
 	public String readLine(int x) {
 		String line = "";
 		try {
-			//code taken from https://stackoverflow.com/questions/2312756/how-to-read-a-specific-line-using-the-specific-line-number-from-a-file-in-java
-			//author is Chris Thompson
 			FileInputStream fs= new FileInputStream("resources/" + Main.getDoctor() + "/" + Main.getDoctor() + ".txt");
 			BufferedReader br = new BufferedReader(new InputStreamReader(fs));
 			for(int i = 1; i < x; i++) {

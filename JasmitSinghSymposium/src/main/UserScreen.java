@@ -16,7 +16,6 @@ import user.UserInfoScreen;
 public class UserScreen extends AbstractScreen {
 	
 	private ArrayList<String> docName;
-	private ArrayList<String> textButton;
 	private int docs;
 	private String doctor;
 	
@@ -27,18 +26,16 @@ public class UserScreen extends AbstractScreen {
 	public void initAllObjects(List<Visible> viewObjects) {
 		setBackground(getA());
 		docName = new ArrayList<String>();
-		textButton = new ArrayList<String>();
 		docs = numberOfUsers();
 		for(int i = 0; i < docs; i++) {
 			System.out.println(docName.get(i));
 			int x = i;
 			Button user = new Button(350 + 150*i, 300, 100, 100, docName.get(i), getB(), new Action() {
 				public void act() {
-					Main.setDoctor(textButton.get(x));
+					Main.setDoctor(docName.get(x));
 					Main.main.setScreen(new UserInfoScreen(getWidth(), getHeight()));
 				}
 			});
-			textButton.add(user.getText());
 			AbstractButton.circleButton(user);
 			viewObjects.add(user);
 		}

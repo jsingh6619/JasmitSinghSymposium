@@ -1,4 +1,4 @@
-package patient;
+package user;
 
 import java.util.List;
 

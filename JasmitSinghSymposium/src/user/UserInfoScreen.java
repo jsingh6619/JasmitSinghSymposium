@@ -24,19 +24,19 @@ public class UserInfoScreen extends AbstractScreen {
 		info = new TextColoredLabel(650, 50, 500, 225, Main.getDoctor() + "\n " + readLine(2) + "\n " + readLine(5) + "\n " + readLine(8) , getG(), Color.BLACK);
 		Button patients = new Button(150, 250, 350, 350, "Patients", getB(), new Action() {
 			public void act() {
-
+				Main.main.setScreen(new PatientsScreen(getWidth(), getHeight()));
 			}
 		});
 		AbstractButton.circleButton(patients);
 		Button calendar = new Button(600, 400, 250, 250, "Calendar", getC(),  new Action() {
 			public void act() {
-
+				Main.main.setScreen(new CalendarScreen(getWidth(), getHeight()));
 			}
 		});
 		AbstractButton.circleButton(calendar);
 		Button about = new Button(950, 300, 150, 150, "About", getD(),  new Action() {
 			public void act() {
-
+				Main.main.setScreen(new AboutScreen(getWidth(), getHeight()));
 			}
 		});
 		AbstractButton.circleButton(about);

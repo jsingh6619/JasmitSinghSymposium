@@ -1,12 +1,12 @@
 package abstractClasses;
 
 import java.awt.*;
-
+import java.io.*;
 import java.util.List;
 
-import guiTeacher.components.*;
 import guiTeacher.interfaces.*;
 import guiTeacher.userInterfaces.*;
+import main.Main;
 
 public abstract class AbstractScreen extends FullFunctionScreen {
 
@@ -51,5 +51,21 @@ public abstract class AbstractScreen extends FullFunctionScreen {
 
 	public static Color getG() {
 		return g;
+	}
+	
+	public String readLine(int x, String a) {
+		String line = "";
+		try {
+			FileInputStream fs= new FileInputStream(a);
+			BufferedReader br = new BufferedReader(new InputStreamReader(fs));
+			for(int i = 1; i < x; i++) {
+				br.readLine();
+			}
+			line = br.readLine();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return line;
 	}
 }

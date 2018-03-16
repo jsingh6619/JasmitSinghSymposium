@@ -6,3 +6,11 @@ D.O.B
 
 Specialty
 Optometrist
+
+Education
+Bachelor's in Biology : Stony Brook University
+Doctor of Optometry Degree : SUNY College of Optometry
+
+Contact Info
+Phone Number : (999)999-9999
+Email : kullemail@email.com

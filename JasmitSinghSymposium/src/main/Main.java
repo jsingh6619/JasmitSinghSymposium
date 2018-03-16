@@ -45,4 +45,13 @@ public class Main extends GUIApplication {
 	public static void setDoctor(String doctor) {
 		Main.doctor = doctor;
 	}
+
+	public static String getPatient() {
+		return patient;
+	}
+
+	public static void setPatient(String patient) {
+		Main.patient = patient;
+	}
+	
 }

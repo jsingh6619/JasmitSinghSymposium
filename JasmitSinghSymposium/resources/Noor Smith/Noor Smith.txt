@@ -6,3 +6,11 @@ D.O.B
 
 Specialty
 Pediatrition
+
+Education
+Bachelor's in Biology : New York University
+Doctor of Medicine Degree : Harvard University
+
+Contact Info
+Phone Number : (333)333-3333
+Email : smithemail@email.com

@@ -31,16 +31,16 @@ public class AboutScreen extends AbstractScreen {
 		file = "resources/" + Main.getDoctor() + "/" + Main.getDoctor() + ".txt";
 		pop = new ArrayList<String>();
 		
-		info = new TextColoredLabel(100, 50, 1080, 200, Main.getDoctor() + "\n " + readLine(2,file) + "\n " + readLine(5,file) + "\n " + readLine(8,file) , getG(), Color.BLACK);
+		info = new TextColoredLabel(100, 50, 1080, 200, Main.getDoctor() + "\n " + readLine(2,file) + "\n " + readLine(5,file) + "\n " + readLine(8,file) , getD(), Color.BLACK);
 		
-		Button education = new Button(100, 275, 450, 175, "Education", getC(),  new Action() {
+		Button education = new Button(100, 275, 450, 175, "Education", getF(),  new Action() {
 			public void act() {
 				pop.clear();
 				//pop-up displaying arraylist
 			}
 		});
 		
-		Button contactInfo = new Button(100, 475, 450, 175, "Contact Info", getD(),  new Action() {
+		Button contactInfo = new Button(100, 475, 450, 175, "Contact Info", getJ(),  new Action() {
 			public void act() {
 				pop.clear();
 				//pop-up displaying arraylist

@@ -7,20 +7,8 @@ import user.*;
 public class Main extends GUIApplication {
 
 	public static Main main;
-	public static LoadScreen loadScreen;
-	public static UserScreen userScreen;
-	public static AboutScreen aboutScreen;
-	public static CalendarScreen calendarScreen;
-	public static ScheduleScreen scheduleScreen;
-	public static UserInfoScreen userInfoScreen;
-	public static HistoryScreen historyScreen;
-	public static ImmunizationsScreen immunizationsScreen;
-	public static PatientInfoScreen patientInfoScreen;
-	public static PatientsScreen patientsScreen;
-	public static PrescriptionsScreen prescriptionsScreen;
-	public static VisitsScreen visitsScreen;
-	public static String doctor;
-	public static String patient;
+	private static String doctor;
+	private static String patient;
 
 	public Main(int width, int height) {
 		super(width, height);
@@ -28,8 +16,7 @@ public class Main extends GUIApplication {
 	}
 
 	public void initScreen() {
-		userScreen = new UserScreen(getWidth(), getHeight());
-		setScreen(userScreen);
+		setScreen(new UserScreen(getWidth(), getHeight()));
 	}
 
 	public static void main(String[] args) {

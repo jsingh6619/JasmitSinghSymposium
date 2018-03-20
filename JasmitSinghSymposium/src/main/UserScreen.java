@@ -31,7 +31,7 @@ public class UserScreen extends AbstractScreen {
 		
 		for(int i = 0; i < docs; i++) {
 			int x = i;
-			Button user = new Button(350 + 150*i, 300, 100, 100, docName.get(i), getB(), new Action() {
+			Button user = new Button(350 + 250*i, 300, 200, 200, docName.get(i), getH(), new Action() {
 				public void act() {
 					Main.setDoctor(docName.get(x));
 					Main.main.setScreen(new UserInfoScreen(getWidth(), getHeight()));

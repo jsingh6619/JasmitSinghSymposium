@@ -12,6 +12,6 @@ public class HistoryScreen extends AbstractScreen {
 	}
 	
 	public void initAllObjects(List<Visible> viewObjects) {
-
+		super.initAllObjects(viewObjects);
 	}
 }

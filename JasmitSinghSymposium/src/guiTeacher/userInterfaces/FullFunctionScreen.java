@@ -173,7 +173,7 @@ public abstract class FullFunctionScreen extends ClickableScreen implements KeyL
 	public void mouseWheelMoved(MouseWheelEvent e) {
 		if(activeScrollPane != null){
 			//positiv is down, negative is up
-			int rotation = e.getWheelRotation();
+			int rotation = e.getWheelRotation()*5;
 			activeScrollPane.scrollY(rotation);
 		}
 	}

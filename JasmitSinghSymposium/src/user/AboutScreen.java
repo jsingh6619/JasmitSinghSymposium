@@ -26,7 +26,7 @@ public class AboutScreen extends AbstractScreen {
 	}
 
 	public void initAllObjects(List<Visible> viewObjects) {
-		setBackground(getA());
+		super.initAllObjects(viewObjects);
 		
 		file = "resources/" + Main.getDoctor() + "/" + Main.getDoctor() + ".txt";
 		pop = new ArrayList<String>();

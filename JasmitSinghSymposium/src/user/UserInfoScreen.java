@@ -18,7 +18,7 @@ public class UserInfoScreen extends AbstractScreen {
 	}
 
 	public void initAllObjects(List<Visible> viewObjects) {
-		setBackground(getA());
+		super.initAllObjects(viewObjects);
 		file = "resources/" + Main.getDoctor() + "/" + Main.getDoctor() + ".txt";
 		
 		//text needs to be aligned left and needs to be multilined

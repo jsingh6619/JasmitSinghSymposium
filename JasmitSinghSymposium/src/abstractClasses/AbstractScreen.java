@@ -24,7 +24,9 @@ public abstract class AbstractScreen extends FullFunctionScreen {
 		super(width, height);
 	}
 
+	//add other components I want displayed on most screens (call using super.initAllObjects)
 	public void initAllObjects(List<Visible> viewObjects) {
+		setBackground(getA());
 	}
 
 	public static Color getA() {
@@ -66,7 +68,6 @@ public abstract class AbstractScreen extends FullFunctionScreen {
 	public static Color getJ() {
 		return j;
 	}
-
 	
 	public String readLine(int x, String a) {
 		String line = "";

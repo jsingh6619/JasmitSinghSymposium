@@ -9,6 +9,7 @@ import abstractClasses.*;
 import guiTeacher.components.*;
 import guiTeacher.interfaces.Visible;
 import main.Main;
+import patient.*;
 
 public class PatientsScreen extends AbstractScreen {
 
@@ -21,31 +22,43 @@ public class PatientsScreen extends AbstractScreen {
 		super(width, height);
 	}
 	
+	//need the text area where the user types the name and date of birth, it narrows the results down
 	public void initAllObjects(List<Visible> viewObjects) {
-		setBackground(getA());
-		
-		scroll = new ScrollablePane(this, 35, 39, 443, 275);
-		populateScroll();
-		viewObjects.add(scroll);
-		
-		file = "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + ".txt";
+		super.initAllObjects(viewObjects);
 		patientNames = new ArrayList<String>();
 		patients = numberOfPatients();
+		scroll = new ScrollablePane(this, 50, 125, 920, 520);
+		scroll.setBackground(getA());
+		populateScroll();
+		viewObjects.add(scroll);
 	}
 	
-	//needs a counter to keep track of row number , if there are 4 patients, satrt new row
 	private void populateScroll() {
 		scroll.removeAll();
 		int row = 0;
+		int col = 0;
+		int rowLim = 3;
+		int colLim = 3;
 		for(int i = 0; i < patients; i++) {
-			int x = i;
-			scroll.addObject(new Button(350 + 150*i, 300, 100, 100, patientNames.get(i) + readLine(1,"resources/" +  Main.getDoctor() + "/patients/" + patientNames.get(i)), getB(), new Action() {
+			int x = 1;
+			Button user = new Button(25 + 225*col, 25 + 225*row , 205, 205, patientNames.get(i) + " " + readLine(1,"resources/" +  Main.getDoctor() + "/patients/" + patientNames.get(i)), getD(), new Action() {
 				public void act() {
 					Main.setPatient(patientNames.get(x));
-					Main.main.setScreen(new UserInfoScreen(getWidth(), getHeight()));
+					file = "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + ".txt";
+					Main.main.setScreen(new PatientInfoScreen(getWidth(), getHeight()));
 				}
-			}));
+			});
+			System.out.println(user.getText());
 			AbstractButton.circleButton(user);
+			scroll.addObject(user);
+			col++;
+			if(i == rowLim) {
+				row++;
+				rowLim = rowLim + 4;
+			}
+			if(col > colLim) {
+				col = 0;
+			}
 		}
 	}
 

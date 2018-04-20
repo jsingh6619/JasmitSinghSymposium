@@ -41,7 +41,7 @@ public class PatientsScreen extends AbstractScreen {
 		int colLim = 3;
 		for(int i = 0; i < patients; i++) {
 			int x = 1;
-			Button user = new Button(25 + 225*col, 25 + 225*row , 205, 205, patientNames.get(i) + " " + readLine(1,"resources/" +  Main.getDoctor() + "/patients/" + patientNames.get(i)), getD(), new Action() {
+			Button user = new Button(25 + 225*col, 25 + 225*row , 205, 205, patientNames.get(i) + " " + readLine(1,"resources/" +  Main.getDoctor() + "/patients/" + patientNames.get(i)), getF(), new Action() {
 				public void act() {
 					Main.setPatient(patientNames.get(x));
 					file = "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + ".txt";

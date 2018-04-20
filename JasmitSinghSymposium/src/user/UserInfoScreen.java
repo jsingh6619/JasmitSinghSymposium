@@ -10,7 +10,8 @@ import main.Main;
 
 public class UserInfoScreen extends AbstractScreen {
 
-	public TextLabel info;
+	public TextArea info;
+	public TextLabel infoBack;
 	public String file;
 	
 	public UserInfoScreen(int width, int height) {
@@ -21,8 +22,10 @@ public class UserInfoScreen extends AbstractScreen {
 		super.initAllObjects(viewObjects);
 		file = "resources/" + Main.getDoctor() + "/" + Main.getDoctor() + ".txt";
 		
-		//text needs to be aligned left and needs to be multilined
-		info = new TextColoredLabel(750, 50, 400, 225, Main.getDoctor() + "\n " + readLine(2,file) + "\n " + readLine(5,file) + "\n " + readLine(8,file) , getD(), Color.BLACK);
+		infoBack = new TextColoredLabel(750, 50, 400, 225, "", getD(), Color.BLACK);
+		
+		//text needs to be aligned left and font needs to be changed
+		info = new TextArea(750, 50, 400, 225, Main.getDoctor() + "\n " + readLine(2,file) + "\n " + readLine(5,file) + "\n " + readLine(8,file));
 		
 		Button patients = new Button(225, 203, 185, 185, "Patients", getG(), new Action() {
 			public void act() {
@@ -45,6 +48,7 @@ public class UserInfoScreen extends AbstractScreen {
 		});
 		AbstractButton.circleButton(about);
 		
+		viewObjects.add(infoBack);
 		viewObjects.add(info);
 		viewObjects.add(patients);
 		viewObjects.add(calendar);

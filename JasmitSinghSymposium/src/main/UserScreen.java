@@ -2,6 +2,8 @@
 
 package main;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.io.File;
 import java.util.*;
 
@@ -10,6 +12,8 @@ import abstractClasses.AbstractButton;
 import abstractClasses.AbstractScreen;
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
+import guiTeacher.components.TextColoredLabel;
+import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import user.UserInfoScreen;
 
@@ -38,8 +42,12 @@ public class UserScreen extends AbstractScreen {
 				}
 			});
 			AbstractButton.circleButton(user);
+			user.setSize(20);
 			viewObjects.add(user);
 		}
+		TextLabel title = new TextColoredLabel(515, 150, 125, 125, "Users", getA(), Color.WHITE);
+		title.setSize(40);
+		viewObjects.add(title);
 	}
 	
 	public int numberOfUsers() {

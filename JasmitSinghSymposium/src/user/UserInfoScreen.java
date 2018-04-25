@@ -10,8 +10,6 @@ import main.Main;
 
 public class UserInfoScreen extends AbstractScreen {
 
-	public TextArea info;
-	public TextLabel infoBack;
 	public String file;
 	
 	public UserInfoScreen(int width, int height) {
@@ -21,17 +19,26 @@ public class UserInfoScreen extends AbstractScreen {
 	public void initAllObjects(List<Visible> viewObjects) {
 		super.initAllObjects(viewObjects);
 		file = "resources/" + Main.getDoctor() + "/" + Main.getDoctor() + ".txt";
-		
-		infoBack = new TextColoredLabel(750, 50, 400, 225, "", getD(), Color.BLACK);
-		
+		Button back = new Button(750, 50, 400, 188, "", getD(), new Action() {
+			public void act() {
+			}
+		});
+		back.setEnabled(false);
 		//text needs to be aligned left and font needs to be changed
-		info = new TextArea(750, 50, 400, 225, Main.getDoctor() + "\n " + readLine(2,file) + "\n " + readLine(5,file) + "\n " + readLine(8,file));
-		
+		TextArea info = new TextArea(765, 50, 400, 225, Main.getDoctor());
+		TextArea info1 = new TextArea(765, 106, 400, 225, readLine(2,file));
+		TextArea info2 = new TextArea(765, 150, 400, 225, readLine(5,file));
+		TextArea info3 = new TextArea(765, 188, 400, 225, readLine(8,file));
+		info.setSize(36);
+		info1.setSize(24);
+		info2.setSize(18);
+		info3.setSize(18);
 		Button patients = new Button(225, 203, 185, 185, "Patients", getG(), new Action() {
 			public void act() {
 				Main.main.setScreen(new PatientsScreen(getWidth(), getHeight()));
 			}
 		});
+		patients.setSize(20);
 		AbstractButton.circleButton(patients);
 		
 		Button calendar = new Button(356, 440, 240, 240, "Calendar", getE(),  new Action() {
@@ -39,6 +46,7 @@ public class UserInfoScreen extends AbstractScreen {
 				Main.main.setScreen(new CalendarScreen(getWidth(), getHeight()));
 			}
 		});
+		calendar.setSize(20);
 		AbstractButton.circleButton(calendar);
 		
 		Button about = new Button(875, 380, 185, 185, "About", getF(),  new Action() {
@@ -46,10 +54,14 @@ public class UserInfoScreen extends AbstractScreen {
 				Main.main.setScreen(new AboutScreen(getWidth(), getHeight()));
 			}
 		});
+		about.setSize(20);
 		AbstractButton.circleButton(about);
 		
-		viewObjects.add(infoBack);
+		viewObjects.add(back);
 		viewObjects.add(info);
+		viewObjects.add(info1);
+		viewObjects.add(info2);
+		viewObjects.add(info3);
 		viewObjects.add(patients);
 		viewObjects.add(calendar);
 		viewObjects.add(about);

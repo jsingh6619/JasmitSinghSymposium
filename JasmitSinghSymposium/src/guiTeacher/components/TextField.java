@@ -41,7 +41,6 @@ import guiTeacher.interfaces.Clickable;
 import guiTeacher.interfaces.Dragable;
 import guiTeacher.interfaces.KeyedComponent;
 import guiTeacher.interfaces.TextComponent;
-import main.OrcMath;
 
 public class TextField extends StyledComponent implements KeyedComponent,Clickable, Runnable, Dragable, TextComponent{
 
@@ -262,7 +261,7 @@ public class TextField extends StyledComponent implements KeyedComponent,Clickab
 	public void update(Graphics2D g) {
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
-		g.setColor(getBackgroundColor());
+		g.setColor(new Color(47, 48, 66));
 		int spaceHeight = getHeight()-DESCRIPTION_SPACE;
 		g.fillRoundRect(1,DESCRIPTION_SPACE,getWidth()-2,spaceHeight,8,8);
 		g.setFont(getFont());
@@ -287,12 +286,12 @@ public class TextField extends StyledComponent implements KeyedComponent,Clickab
 
 
 		}
-		g.setColor(getForeground());
+		g.setColor(Color.WHITE);
 		if(getText() != null) g.drawString(getText(), X_MARGIN, top);
 
 		try{
 		if(!isReadOnly() && cursorShowing && running && selectIndex == cursorIndex){
-			g.setColor(Color.black);
+			g.setColor(Color.WHITE);
 			int base = getHeight()-fm.getDescent();
 			//			if(cursorIndex> getText().length())cursorIndex = getText().length();
 			int x = fm.stringWidth(getText().substring(0,cursorIndex))+X_MARGIN;

@@ -17,14 +17,20 @@ import patient.*;
 
 public class PatientsScreen extends AbstractScreen {
 
-	private ArrayList<String> patientNames;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public ArrayList<String> patientNames;
 	public String name;
 	public String birthday;
 	public static TextField nameInput;
 	public static TextField birthdayInput;
 	public static ScrollablePane scroll;
-	private int patients;
+	public int patients;
 	public String file;
+	public static int initial = 0;
+	public static int index = 0;
 
 	public PatientsScreen(int width, int height) {
 		super(width, height);
@@ -33,6 +39,7 @@ public class PatientsScreen extends AbstractScreen {
 	//need the text area where the user types the name and date of birth, it narrows the results down
 	public void initAllObjects(List<Visible> viewObjects) {
 		super.initAllObjects(viewObjects);
+		
 		patientNames = new ArrayList<String>();
 		patients = numberOfPatients();
 		scroll = new ScrollablePane(this, 50, 125, 920, 520);
@@ -40,10 +47,40 @@ public class PatientsScreen extends AbstractScreen {
 		populateScroll();
 		viewObjects.add(scroll);
 		
+		//no patient found
+		if(initial == 1) {
+			viewObjects.remove(scroll);
+			
+			TextArea error = new TextArea(50, 125, 920, 520, "NO SUCH PATIENT");
+			error.setCustomTextColor(Color.RED);
+			error.setSize(36);
+			viewObjects.add(error);
+		}
+		
+		//patient found
+		if(initial == 2) {
+			viewObjects.remove(scroll);
+			
+			Button patient = new Button(510, 260, 205, 205, patientNames.get(index) + " " + readLine(1,"resources/" +  Main.getDoctor() + "/patients/" + patientNames.get(index)), getF(), new Action() {
+				public void act() {
+					Main.setPatient(patientNames.get(index));
+					file = "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + ".txt";
+					Main.main.setScreen(new PatientInfoScreen(getWidth(), getHeight()));
+				}
+			});
+			AbstractButton.circleButton(patient);
+			viewObjects.add(patient);
+		}
+		
+		TextLabel title = new TextColoredLabel(515, 35, 155, 80, "Patients", getA(), Color.WHITE);
+		title.setSize(40);
+		viewObjects.add(title);
+		
 		TextArea nameHead = new TextArea(990, 125, 125, 100, "Name: ");
 		nameHead.setCustomTextColor(Color.WHITE);
 		nameHead.setSize(20);
 		viewObjects.add(nameHead);
+		
 		nameInput = new TextField(1050, 123, 175, 35, "");
 		nameInput.setSize(20);
 		nameInput.setDrawBorder(false);
@@ -53,36 +90,45 @@ public class PatientsScreen extends AbstractScreen {
 		birthHead.setCustomTextColor(Color.WHITE);
 		birthHead.setSize(20);
 		viewObjects.add(birthHead);
+		
 		birthdayInput = new TextField(1050, 173, 175, 35, "");
 		birthdayInput.setSize(20);
 		birthdayInput.setDrawBorder(false);
 		viewObjects.add(birthdayInput);
 		
-		Button search = new Button(1025, 225, 50, 50, "Search", getA(), new Action() {
-			
+		Button search = new Button(1025, 225, 75, 40, "Search", Color.WHITE, new Action() {
 			public void act() {
-				name = nameInput.getText().toString().toLowerCase();
-				name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
+				name = nameInput.getText().toString();
 				birthday = birthdayInput.getText().toString();
+				boolean found = false;
+				int index = 0;
 				
+				for(int i = 0; i < patients; i++) {
+					if(name.equals(patientNames.get(i)) && birthday.equals(readLine(1,"resources/" +  Main.getDoctor() + "/patients/" + patientNames.get(i)))) {
+						index = i;
+						found = true;
+						break;
+					}
+				};
 				
-				//filler code -> need to make the if condition
-				if(birthday.length()==0) {
-					
+				if(!found){
+					PatientsScreen.initial = 1;
+					Main.main.setScreen(new PatientsScreen(getWidth(), getHeight()));
 				}
-				else {
-					scroll.removeAll();
-					TextArea error = new TextArea(50, 125, 920, 520, "NO SUCH PATIENT");
-					error.setCustomTextColor(Color.RED);
-					error.setSize(36);
+				
+				if(found) {
+					PatientsScreen.initial = 2;
+					PatientsScreen.index = index;
+					Main.main.setScreen(new PatientsScreen(getWidth(), getHeight()));
 				}
 			}
 		});
-		
+		search.setSize(20);
 		viewObjects.add(search);
 
 	}
 	
+
 	private void populateScroll() {
 		scroll.removeAll();
 		int row = 0;
@@ -98,7 +144,6 @@ public class PatientsScreen extends AbstractScreen {
 					Main.main.setScreen(new PatientInfoScreen(getWidth(), getHeight()));
 				}
 			});
-			System.out.println(user.getText());
 			AbstractButton.circleButton(user);
 			scroll.addObject(user);
 			col++;

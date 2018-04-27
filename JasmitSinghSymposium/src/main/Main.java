@@ -1,11 +1,13 @@
 package main;
 
 import guiTeacher.GUIApplication;
-import patient.*;
-import user.*;
 
 public class Main extends GUIApplication {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static Main main;
 	private static String doctor;
 	private static String patient;

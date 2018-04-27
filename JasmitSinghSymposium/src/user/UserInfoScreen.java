@@ -1,6 +1,5 @@
 package user;
 
-import java.awt.Color;
 import java.util.List;
 
 import abstractClasses.*;
@@ -10,6 +9,10 @@ import main.Main;
 
 public class UserInfoScreen extends AbstractScreen {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public String file;
 	
 	public UserInfoScreen(int width, int height) {

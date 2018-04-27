@@ -45,6 +45,7 @@ public class UserScreen extends AbstractScreen {
 			user.setSize(20);
 			viewObjects.add(user);
 		}
+		
 		TextLabel title = new TextColoredLabel(515, 150, 125, 125, "Users", getA(), Color.WHITE);
 		title.setSize(40);
 		viewObjects.add(title);

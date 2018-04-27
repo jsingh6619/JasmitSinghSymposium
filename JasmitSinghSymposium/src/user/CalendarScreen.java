@@ -9,7 +9,11 @@ import guiTeacher.interfaces.*;
 
 public class CalendarScreen extends AbstractScreen {
 
-	private TextLabel title;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public TextLabel title;
 	
 	public CalendarScreen(int width, int height) {
 		super(width, height);
@@ -17,7 +21,7 @@ public class CalendarScreen extends AbstractScreen {
 
 	public void initAllObjects(List<Visible> viewObjects) {
 		super.initAllObjects(viewObjects);
-		title = new TextColoredLabel(x, y, w, h, "Calendar", Color.BLACK, Color.WHITE)
+		title = new TextColoredLabel(1, 1, 1, 1, "Calendar", Color.BLACK, Color.WHITE);
 	}
 
 }

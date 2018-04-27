@@ -16,7 +16,6 @@
 //have an option for the user to modify their name, d.o.b, npi #, specialty
 package user;
 
-import java.awt.Color;
 import java.util.*;
 
 import abstractClasses.*;
@@ -26,6 +25,10 @@ import main.Main;
 
 public class AboutScreen extends AbstractScreen {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public ArrayList<String> pop;
 	public String file;
 

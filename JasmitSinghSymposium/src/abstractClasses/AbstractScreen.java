@@ -4,6 +4,10 @@ import java.awt.*;
 import java.io.*;
 import java.util.List;
 
+import guiTeacher.components.Action;
+import guiTeacher.components.Button;
+import guiTeacher.components.ScrollablePane;
+import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.*;
 import guiTeacher.userInterfaces.*;
 

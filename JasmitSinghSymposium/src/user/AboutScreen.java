@@ -16,6 +16,7 @@
 //have an option for the user to modify their name, d.o.b, npi #, specialty
 package user;
 
+import java.awt.Color;
 import java.util.*;
 
 import abstractClasses.*;
@@ -29,8 +30,8 @@ public class AboutScreen extends AbstractScreen {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public ArrayList<String> pop;
 	public String file;
+	public static int popper = 1;
 
 	public AboutScreen(int width, int height) {
 		super(width, height);
@@ -39,7 +40,6 @@ public class AboutScreen extends AbstractScreen {
 	public void initAllObjects(List<Visible> viewObjects) {
 		super.initAllObjects(viewObjects);
 		file = "resources/" + Main.getDoctor() + "/" + Main.getDoctor() + ".txt";
-		pop = new ArrayList<String>();
 		
 		Button back = new Button(100, 50, 1080, 200, "", getD(), new Action() {
 			public void act() {
@@ -56,9 +56,10 @@ public class AboutScreen extends AbstractScreen {
 		info2.setSize(18);
 		info3.setSize(18);
 		
+				
 		Button education = new Button(100, 275, 450, 175, "Education", getF(),  new Action() {
 			public void act() {
-				pop.clear();
+				AboutScreen.popper = 1;
 				//pop-up displaying arraylist
 			}
 		});
@@ -66,7 +67,7 @@ public class AboutScreen extends AbstractScreen {
 		
 		Button contactInfo = new Button(100, 475, 450, 175, "Contact Info", getJ(),  new Action() {
 			public void act() {
-				pop.clear();
+				AboutScreen.popper = 1;
 				//pop-up displaying arraylist
 			}
 		});
@@ -74,7 +75,7 @@ public class AboutScreen extends AbstractScreen {
 		
 		Button workHistory = new Button(575, 275, 605, 375, "Work History", getE(),  new Action() {
 			public void act() {
-				pop.clear();
+				AboutScreen.popper = 1;
 				//pop-up displaying arraylist
 			}
 		});
@@ -88,5 +89,32 @@ public class AboutScreen extends AbstractScreen {
 		viewObjects.add(education);
 		viewObjects.add(contactInfo);
 		viewObjects.add(workHistory);
+		
+		if(popper == 1) {
+			viewObjects.removeAll(viewObjects);
+
+			Button popup = new Button(480, 50, 320, 600, "", getC(), new Action() {
+				public void act() {
+				}
+			});
+			popup.setEnabled(false);
+						
+			TextLabel title = new TextLabel(540, 75, 200, 125, "EDUCATION");
+			title.setSize(35);
+			
+			ScrollablePane scroll = new ScrollablePane(this, 500, 135, 280, 500);
+			scroll.setBackground(new Color(108, 195, 22));
+			populateScroll();
+			
+			viewObjects.add(popup);
+			viewObjects.add(title);
+			viewObjects.add(scroll);
+		}
+	}
+
+	public void populateScroll() {
+		if(popper == 1) {
+			
+		}
 	}
 }

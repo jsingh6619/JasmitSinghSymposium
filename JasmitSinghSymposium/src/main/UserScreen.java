@@ -3,7 +3,6 @@
 package main;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.io.File;
 import java.util.*;
 
@@ -19,9 +18,12 @@ import user.UserInfoScreen;
 
 public class UserScreen extends AbstractScreen {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<String> docName;
 	private int docs;
-	private String doctor;
 	
 	public UserScreen(int width, int height) {
 		super(width, height);

@@ -43,6 +43,7 @@ public class Button extends TextLabel implements Clickable{
 	private boolean enabled;
 	protected int curveX;
 	protected int curveY;
+	public boolean enable = true;
 	
 	/**
 	 * 
@@ -116,8 +117,12 @@ public class Button extends TextLabel implements Clickable{
 	 * @return either the hoverImage or image, depending on the state of this Button
 	 */
 	public BufferedImage getImage(){
-		if(hovered || !enabled)return hoverImage;
-		else return super.getImage();
+		if(hovered || !enabled) {
+			if(enable) {
+				return hoverImage;
+			}
+		}
+		return super.getImage();
 	}
 	
 	/**

@@ -19,7 +19,7 @@ public class PatientInfoScreen extends AbstractScreen {
 	
 	public void initAllObjects(List<Visible> viewObjects) {
 		super.initAllObjects(viewObjects);
-		file = "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + ".txt";
+		file = "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient();
 		
 		Button back = new Button(100, 50, 540, 200, "", getD(), new Action() {
 			public void act() {
@@ -28,12 +28,15 @@ public class PatientInfoScreen extends AbstractScreen {
 		back.setEnabled(false);
 		
 		TextArea info = new TextArea(115, 50, 400, 225, Main.getPatient());
-		//TextArea info1 = new TextArea(115, 106, 400, 225, readLine(2,file));
+		info.setSize(36);
+		TextArea info1 = new TextArea(115, 106, 400, 225, readLine(1,file));
+		info1.setSize(24);
 		//TextArea info2 = new TextArea(115, 150, 400, 225, readLine(5,file));
 		//TextArea info3 = new TextArea(115, 188, 400, 225, readLine(8,file));
 		
+		viewObjects.add(back);
 		viewObjects.add(info);
-		//viewObjects.add(info1);
+		viewObjects.add(info1);
 		//viewObjects.add(info2);
 		//viewObjects.add(info3);
 	}

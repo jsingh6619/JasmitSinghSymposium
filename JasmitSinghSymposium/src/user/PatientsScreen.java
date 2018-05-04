@@ -64,7 +64,7 @@ public class PatientsScreen extends AbstractScreen {
 			Button patient = new Button(510, 260, 205, 205, patientNames.get(index) + " " + readLine(1,"resources/" +  Main.getDoctor() + "/patients/" + patientNames.get(index)), getF(), new Action() {
 				public void act() {
 					Main.setPatient(patientNames.get(index));
-					file = "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + ".txt";
+					file = "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient();
 					Main.main.setScreen(new PatientInfoScreen(getWidth(), getHeight()));
 				}
 			});
@@ -128,18 +128,18 @@ public class PatientsScreen extends AbstractScreen {
 
 	}
 	
-
-	private void populateScroll() {
+//one problem i am having is setting the patient correctly. I am creating the buttons within a for loop, and therefore can''t access any variables because "defined in an enclosing scope must be final or effectively final" 
+	public void populateScroll() {
 		scroll.removeAll();
 		int row = 0;
 		int col = 0;
 		int rowLim = 3;
 		int colLim = 3;
 		for(int i = 0; i < patients; i++) {
-			int x = 1;
+			String str = patientNames.get(i);
 			Button user = new Button(25 + 225*col, 25 + 225*row , 205, 205, patientNames.get(i) + " " + readLine(1,"resources/" +  Main.getDoctor() + "/patients/" + patientNames.get(i)), getF(), new Action() {
 				public void act() {
-					Main.setPatient(patientNames.get(x));
+					Main.setPatient(str);
 					file = "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + ".txt";
 					Main.main.setScreen(new PatientInfoScreen(getWidth(), getHeight()));
 				}

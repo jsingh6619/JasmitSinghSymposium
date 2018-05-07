@@ -40,7 +40,7 @@ public class AboutScreen extends AbstractScreen {
 
 	public void initAllObjects(List<Visible> viewObjects) {
 		super.initAllObjects(viewObjects);
-		file = "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + ".txt";
+		file = "resources/" + Main.getDoctor() + "/" + Main.getDoctor() + ".txt";
 		
 		Button back = new Button(100, 50, 1080, 200, "", getD(), new Action() {
 			public void act() {
@@ -48,7 +48,7 @@ public class AboutScreen extends AbstractScreen {
 		});
 		back.setEnabled(false);
 		
-		TextArea info = new TextArea(115, 50, 400, 225, Main.getPatient());
+		TextArea info = new TextArea(115, 50, 400, 225, Main.getDoctor());
 		TextArea info1 = new TextArea(115, 106, 400, 225, readLine(2,file));
 		TextArea info2 = new TextArea(115, 150, 400, 225, readLine(5,file));
 		TextArea info3 = new TextArea(115, 188, 400, 225, readLine(8,file));
@@ -117,22 +117,22 @@ public class AboutScreen extends AbstractScreen {
 		
 		if(popper == 2) {
 			scroll.removeAll();
-			TextArea bachelors = new TextArea(10, 10, 260, 150, readLine(17,file) + "\n" + readLine(18,file));
-			TextArea doctors = new TextArea(10, 100, 260, 150, readLine(19,file) + "\n" + readLine(20,file));
-			bachelors.setSize(20);
-			doctors.setSize(20);
-			scroll.addObject(bachelors);
-			scroll.addObject(doctors);
+			TextArea phone = new TextArea(10, 10, 260, 150, readLine(17,file) + "\n" + readLine(18,file));
+			TextArea email = new TextArea(10, 100, 260, 150, readLine(19,file) + "\n" + readLine(20,file));
+			phone.setSize(20);
+			email.setSize(20);
+			scroll.addObject(phone);
+			scroll.addObject(email);
 		}
 		
 		if(popper == 3) {
 			scroll.removeAll();
-			TextArea bachelors = new TextArea(10, 10, 260, 150, "add to text first");
-			TextArea doctors = new TextArea(10, 100, 260, 150, "add to text first");
-			bachelors.setSize(20);
-			doctors.setSize(20);
-			scroll.addObject(bachelors);
-			scroll.addObject(doctors);
+			TextArea filler = new TextArea(10, 10, 260, 150, "add to text first");
+			TextArea code = new TextArea(10, 100, 260, 150, "add to text first");
+			filler.setSize(20);
+			code.setSize(20);
+			scroll.addObject(filler);
+			scroll.addObject(code);
 		}
 	}
 	

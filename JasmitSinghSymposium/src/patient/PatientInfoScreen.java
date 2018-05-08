@@ -34,7 +34,7 @@ public class PatientInfoScreen extends AbstractScreen {
 	
 	public void initAllObjects(List<Visible> viewObjects) {
 		super.initAllObjects(viewObjects);
-		file = "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient();
+		file = "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info";
 	
 		Button back = new Button(100, 50, 540, 200, "", getD(), new Action() {
 			public void act() {
@@ -84,14 +84,24 @@ public class PatientInfoScreen extends AbstractScreen {
 		viewObjects.add(plan);
 		viewObjects.add(contInfo);
 		
+		TextArea hist = new TextArea(100, 250, 450, 50, "Family History");
+		hist.setCustomTextColor(Color.WHITE);
+		hist.setSize(25);
+		
 		famHist = new ScrollablePane(this, 100, 300, 450, 160);
 		famHist.setBackground(getB());
 		populateScroll(6);
+		
+		TextArea allergy = new TextArea(100, 460, 450, 50, "Allergies");
+		allergy.setCustomTextColor(Color.WHITE);
+		allergy.setSize(25);
 		
 		allergies = new ScrollablePane(this, 100, 510, 450, 160);
 		allergies.setBackground(getE());
 		populateScroll(7);
 		
+		viewObjects.add(hist);
+		viewObjects.add(allergy);
 		viewObjects.add(famHist);
 		viewObjects.add(allergies);
 		
@@ -190,7 +200,9 @@ public class PatientInfoScreen extends AbstractScreen {
 		
 		//alergies
 		if(condition == 7) {
-			
+			for(int i = 1; i < maxLines("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/allergies") + 1; i++) {
+				TextArea allergy = new TextArea(x, y, w, h, readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/allergies"));
+			}
 		}
 	}
 	

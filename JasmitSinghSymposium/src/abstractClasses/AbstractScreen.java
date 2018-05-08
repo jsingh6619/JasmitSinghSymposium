@@ -88,4 +88,19 @@ public abstract class AbstractScreen extends FullFunctionScreen {
 		}
 		return line;
 	}
+	
+	public int maxLines(String a) {
+		int x = 0;
+		try {
+			FileInputStream fs= new FileInputStream(a);
+			BufferedReader br = new BufferedReader(new InputStreamReader(fs));
+			while(br.readLine()!=null) {
+				x++;
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return x;
+	}
 }

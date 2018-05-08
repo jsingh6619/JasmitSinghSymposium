@@ -61,10 +61,9 @@ public class PatientsScreen extends AbstractScreen {
 		if(initial == 2) {
 			viewObjects.remove(scroll);
 			
-			Button patient = new Button(510, 260, 205, 205, patientNames.get(index) + " " + readLine(1,"resources/" +  Main.getDoctor() + "/patients/" + patientNames.get(index)), getF(), new Action() {
+			Button patient = new Button(510, 260, 205, 205, patientNames.get(index) + " " + readLine(1,"resources/" +  Main.getDoctor() + "/patients/" + patientNames.get(index) + "/info"), getF(), new Action() {
 				public void act() {
 					Main.setPatient(patientNames.get(index));
-					file = "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient();
 					Main.main.setScreen(new PatientInfoScreen(getWidth(), getHeight()));
 				}
 			});
@@ -104,7 +103,7 @@ public class PatientsScreen extends AbstractScreen {
 				int index = 0;
 				
 				for(int i = 0; i < patients; i++) {
-					if(name.equals(patientNames.get(i)) && birthday.equals(readLine(1,"resources/" +  Main.getDoctor() + "/patients/" + patientNames.get(i)))) {
+					if(name.equals(patientNames.get(i)) && birthday.equals(readLine(1,"resources/" +  Main.getDoctor() + "/patients/" + patientNames.get(i) + "/info"))) {
 						index = i;
 						found = true;
 						break;
@@ -137,10 +136,9 @@ public class PatientsScreen extends AbstractScreen {
 		int colLim = 3;
 		for(int i = 0; i < patients; i++) {
 			String str = patientNames.get(i);
-			Button user = new Button(25 + 225*col, 25 + 225*row , 205, 205, patientNames.get(i) + " " + readLine(1,"resources/" +  Main.getDoctor() + "/patients/" + patientNames.get(i)), getF(), new Action() {
+			Button user = new Button(25 + 225*col, 25 + 225*row , 205, 205, patientNames.get(i) + " " + readLine(1,"resources/" +  Main.getDoctor() + "/patients/" + patientNames.get(i) + "/info"), getF(), new Action() {
 				public void act() {
 					Main.setPatient(str);
-					file = "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + ".txt";
 					Main.main.setScreen(new PatientInfoScreen(getWidth(), getHeight()));
 				}
 			});
@@ -162,7 +160,7 @@ public class PatientsScreen extends AbstractScreen {
 		File directory = new File("resources/" +  Main.getDoctor() + "/patients");
 		File listDir[] = directory.listFiles();
 		for (File x : listDir) {
-			if (!x.isDirectory()) {
+			if (x.isDirectory()) {
 				numberOfUsers++;
 				patientNames.add(x.getName());
 			}

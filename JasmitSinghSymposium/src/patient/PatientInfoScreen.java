@@ -60,8 +60,32 @@ public class PatientInfoScreen extends AbstractScreen {
 		viewObjects.add(number);
 		viewObjects.add(gender);
 		
+		Button insurBank = new Button(690, 50, 350, 200, "", getH(), new Action() {
+			public void act() {
+			}
+		});
+		insurBank.setEnabled(false);
+		
+		TextArea company = new TextArea(705, 50, 400, 225, "We the Best");
+		company.setSize(36);
+		
+		TextArea id = new TextArea(705, 106, 400, 225, "JS5243J");
+		id.setSize(24);
+		
+		TextArea plan = new TextArea(705, 188, 400, 225, "The Best One");
+		plan.setSize(18);
+		
+		TextArea contInfo = new TextArea(705, 150, 400, 225, "(959)597-4633");
+		contInfo.setSize(18);
+		
+		viewObjects.add(insurBank);
+		viewObjects.add(company);
+		viewObjects.add(id);
+		viewObjects.add(plan);
+		viewObjects.add(contInfo);
+		
 		famHist = new ScrollablePane(this, 100, 300, 450, 160);
-		famHist.setBackground(getD());
+		famHist.setBackground(getB());
 		populateScroll(6);
 		
 		allergies = new ScrollablePane(this, 100, 510, 450, 160);
@@ -71,7 +95,7 @@ public class PatientInfoScreen extends AbstractScreen {
 		viewObjects.add(famHist);
 		viewObjects.add(allergies);
 		
-		Button visits = new Button(225, 203, 185, 185, "Visits", getG(), new Action() {
+		Button visits = new Button(575, 375, 150, 150, "Visits", getF(), new Action() {
 			public void act() {
 				PatientInfoScreen.popper = 1;
 				PatientInfoScreen.head = "Visits";
@@ -80,7 +104,7 @@ public class PatientInfoScreen extends AbstractScreen {
 		});
 		visits.setSize(20);
 		
-		Button history = new Button(275, 203, 185, 185, "History", getG(), new Action() {
+		Button history = new Button(600, 550, 125, 125, "History", getG(), new Action() {
 			public void act() {
 				PatientInfoScreen.popper = 2;
 				PatientInfoScreen.head = "History";
@@ -89,7 +113,7 @@ public class PatientInfoScreen extends AbstractScreen {
 		});
 		history.setSize(20);
 		
-		Button prescripitions = new Button(325, 203, 185, 185, "Prescriptions", getG(), new Action() {
+		Button prescripitions = new Button(715, 275, 157, 157, "Prescriptions", getC(), new Action() {
 			public void act() {
 				PatientInfoScreen.popper = 3;
 				PatientInfoScreen.head = "Prescriptions";
@@ -98,7 +122,7 @@ public class PatientInfoScreen extends AbstractScreen {
 		});
 		prescripitions.setSize(20);
 		
-		Button immunizations = new Button(375, 203, 185, 185, "Immunizations", getG(), new Action() {
+		Button immunizations = new Button(1000, 250, 142, 142, "Immunizations", getJ(), new Action() {
 			public void act() {
 				PatientInfoScreen.popper = 4;
 				PatientInfoScreen.head = "Immunizations";
@@ -107,7 +131,7 @@ public class PatientInfoScreen extends AbstractScreen {
 		});
 		immunizations.setSize(20);
 	
-		Button update = new Button(425, 203, 185, 185, "Update", getG(), new Action() {
+		Button update = new Button(1100, 100, 100, 100, "Update", getI(), new Action() {
 			public void act() {
 				PatientInfoScreen.popper = 5;
 				PatientInfoScreen.head = "Update";

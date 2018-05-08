@@ -27,7 +27,7 @@ public class UserInfoScreen extends AbstractScreen {
 			}
 		});
 		back.setEnabled(false);
-		//text needs to be aligned left and font needs to be changed
+
 		TextArea info = new TextArea(765, 50, 400, 225, Main.getDoctor());
 		TextArea info1 = new TextArea(765, 106, 400, 225, readLine(2,file));
 		TextArea info2 = new TextArea(765, 150, 400, 225, readLine(5,file));

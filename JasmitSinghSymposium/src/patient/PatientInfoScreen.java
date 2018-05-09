@@ -108,7 +108,7 @@ public class PatientInfoScreen extends AbstractScreen {
 		Button visits = new Button(575, 375, 150, 150, "Visits", getF(), new Action() {
 			public void act() {
 				PatientInfoScreen.popper = 1;
-				PatientInfoScreen.head = "Visits";
+				PatientInfoScreen.head = "      Visits      ";
 				Main.main.setScreen(new PatientInfoScreen(getWidth(), getHeight()));
 			}
 		});
@@ -117,7 +117,7 @@ public class PatientInfoScreen extends AbstractScreen {
 		Button history = new Button(600, 550, 125, 125, "History", getG(), new Action() {
 			public void act() {
 				PatientInfoScreen.popper = 2;
-				PatientInfoScreen.head = "History";
+				PatientInfoScreen.head = "     History     ";
 				Main.main.setScreen(new PatientInfoScreen(getWidth(), getHeight()));
 			}
 		});
@@ -144,7 +144,7 @@ public class PatientInfoScreen extends AbstractScreen {
 		Button update = new Button(1100, 100, 100, 100, "Update", getI(), new Action() {
 			public void act() {
 				PatientInfoScreen.popper = 5;
-				PatientInfoScreen.head = "Update";
+				PatientInfoScreen.head = "     Update     ";
 				Main.main.setScreen(new PatientInfoScreen(getWidth(), getHeight()));
 			}
 		});
@@ -195,14 +195,22 @@ public class PatientInfoScreen extends AbstractScreen {
 		
 		//famHist
 		if(condition == 6) {
-			
+			for(int i = 1; i < maxLines("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/health") + 1; i++) {
+				TextArea health = new TextArea(10, 25*(i-1), 340, 45, readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/health"));
+				health.setSize(24);
+				famHist.addObject(health);
+			}
+			famHist.update();
 		}
 		
 		//alergies
 		if(condition == 7) {
 			for(int i = 1; i < maxLines("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/allergies") + 1; i++) {
-				TextArea allergy = new TextArea(x, y, w, h, readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/allergies"));
+				TextArea allergy = new TextArea(10, 25*(i-1), 340, 45, readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/allergies"));
+				allergy.setSize(24);
+				allergies.addObject(allergy);
 			}
+			allergies.update();
 		}
 	}
 	

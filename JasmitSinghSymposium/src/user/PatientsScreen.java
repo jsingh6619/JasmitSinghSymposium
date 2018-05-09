@@ -153,6 +153,7 @@ public class PatientsScreen extends AbstractScreen {
 				col = 0;
 			}
 		}
+		scroll.update();
 	}
 
 	public int numberOfPatients() {

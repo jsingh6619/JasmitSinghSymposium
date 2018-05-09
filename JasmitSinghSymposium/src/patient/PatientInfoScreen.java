@@ -180,7 +180,16 @@ public class PatientInfoScreen extends AbstractScreen {
 		
 		//prescriptions
 		if(condition == 3) {
-			
+			for(int i = 1; i < maxLines("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/prescription") + 1; i = i + 2) {
+				TextArea rx = new TextArea(5, 25*(i-1), 340, 45, readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/prescription"));
+				rx.setSize(18);
+				TextArea duration = new TextArea(25, 25*(i-1) + 25, 340, 45, readLine(i + 1, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/prescription"));
+				duration.setSize(18);
+				
+				popped.addObject(rx);
+				popped.addObject(duration);
+			}
+			popped.update();
 		}
 		
 		//immunizations

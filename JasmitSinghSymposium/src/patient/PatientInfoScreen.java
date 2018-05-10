@@ -67,7 +67,7 @@ public class PatientInfoScreen extends AbstractScreen {
 		insurBank.setEnabled(false);
 		
 		TextArea company = new TextArea(705, 50, 400, 225, readLine(5,file));
-		company.setSize(36);
+		company.setSize(34);
 		
 		TextArea id = new TextArea(705, 106, 400, 225, readLine(6,file));
 		id.setSize(24);

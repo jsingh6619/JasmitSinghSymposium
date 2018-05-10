@@ -51,7 +51,7 @@ public class PatientInfoScreen extends AbstractScreen {
 		TextArea number = new TextArea(115, 188, 400, 225, readLine(2,file));
 		number.setSize(18);
 		
-		TextArea gender = new TextArea(115, 150, 400, 225, readLine(8,file));
+		TextArea gender = new TextArea(115, 150, 400, 225, readLine(3,file));
 		gender.setSize(18);
 		
 		viewObjects.add(back);
@@ -66,16 +66,16 @@ public class PatientInfoScreen extends AbstractScreen {
 		});
 		insurBank.setEnabled(false);
 		
-		TextArea company = new TextArea(705, 50, 400, 225, "We the Best");
+		TextArea company = new TextArea(705, 50, 400, 225, readLine(5,file));
 		company.setSize(36);
 		
-		TextArea id = new TextArea(705, 106, 400, 225, "JS5243J");
+		TextArea id = new TextArea(705, 106, 400, 225, readLine(6,file));
 		id.setSize(24);
 		
-		TextArea plan = new TextArea(705, 188, 400, 225, "The Best One");
+		TextArea plan = new TextArea(705, 188, 400, 225, readLine(7,file));
 		plan.setSize(18);
 		
-		TextArea contInfo = new TextArea(705, 150, 400, 225, "(959)597-4633");
+		TextArea contInfo = new TextArea(705, 150, 400, 225, readLine(8,file));
 		contInfo.setSize(18);
 		
 		viewObjects.add(insurBank);

@@ -170,36 +170,72 @@ public class PatientInfoScreen extends AbstractScreen {
 	public void populateScroll(int condition) {
 		//visits
 		if(condition == 1) {
-			
+			popped.update();
 		}
 		
 		//history
 		if(condition == 2) {
-			
+			popped.update();
 		}
 		
 		//prescriptions
 		if(condition == 3) {
-			for(int i = 1; i < maxLines("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/prescription") + 1; i = i + 2) {
-				TextArea rx = new TextArea(5, 25*(i-1), 340, 45, readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/prescription"));
-				rx.setSize(18);
-				TextArea duration = new TextArea(25, 25*(i-1) + 25, 340, 45, readLine(i + 1, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/prescription"));
-				duration.setSize(18);
+			TextArea rTitle = new TextArea(5, 0, 180, 45, "Rx No.");
+			TextArea quantity = new TextArea(185, 0, 180, 45, "Quantity");
+			TextArea dateBegin = new TextArea(360, 0, 180, 45, "Date Begin");
+			TextArea dateEnd = new TextArea(540, 0, 180, 45, "Date End");
+			TextArea docPrescriber = new TextArea(720, 0, 180, 45, "Prescriber");
+			
+			// fix this by having it increment by 1, and check to see the value after mod 5, to allign it how i prefer
+			for(int i = 1; i < maxLines("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/prescription") + 1; i++) {
+				int xAlign = i % 5;
+				int row = 0;
+				if(xAlign == 1) {
+					xAlign = 5;
+				}
+				if(xAlign == 2) {
+					xAlign = 185;
+				}
+				if(xAlign == 3) {
+					xAlign = 360;
+				}
+				if(xAlign == 4) {
+					xAlign = 540;
+				}
+				if(xAlign == 0) {
+					xAlign = 720;
+				}
+				TextArea info = new TextArea(xAlign, row, 340, 45, readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/prescription"));
+				info.setSize(18);
 				
-				popped.addObject(rx);
-				popped.addObject(duration);
+				popped.addObject(info);
+				if(i % 5 == 1) {
+					row++;
+				}
 			}
+			
+			rTitle.setSize(24);
+			quantity.setSize(24);
+			dateBegin.setSize(24);
+			dateEnd.setSize(24);
+			docPrescriber.setSize(24);
+			
+			popped.addObject(rTitle);
+			popped.addObject(quantity);
+			popped.addObject(dateBegin);
+			popped.addObject(dateEnd);
+			popped.addObject(docPrescriber);
 			popped.update();
 		}
 		
 		//immunizations
 		if(condition == 4) {
-			
+			popped.update();
 		}
 
 		//update
 		if(condition == 5) {
-			
+			popped.update();
 		}
 		
 		//famHist
@@ -208,6 +244,11 @@ public class PatientInfoScreen extends AbstractScreen {
 				TextArea health = new TextArea(10, 25*(i-1), 340, 45, readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/health"));
 				health.setSize(24);
 				famHist.addObject(health);
+			}
+			if(readLine(1, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/health") == null){
+				TextArea na = new TextArea(10, 0, 340, 45, "NONE");
+				na.setSize(24);
+				famHist.addObject(na);
 			}
 			famHist.update();
 		}
@@ -218,6 +259,11 @@ public class PatientInfoScreen extends AbstractScreen {
 				TextArea allergy = new TextArea(10, 25*(i-1), 340, 45, readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/allergies"));
 				allergy.setSize(24);
 				allergies.addObject(allergy);
+			}
+			if(readLine(1, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/allergies") == null){
+				TextArea na = new TextArea(10, 0, 340, 45, "NONE");
+				na.setSize(24);
+				allergies.addObject(na);
 			}
 			allergies.update();
 		}
@@ -262,20 +308,20 @@ public class PatientInfoScreen extends AbstractScreen {
 		
 		getViewObjects().removeAll(getViewObjects());
 
-		Button popup = new Button(480, 50, 320, 600, "", getC(), new Action() {
+		Button popup = new Button(700, 50, 320, 550, "", getC(), new Action() {
 			public void act() {
 			}
 		});
 		popup.setEnabled(false);
 					
-		TextLabel title = new TextLabel(540, 75, 200, 125, head);
+		TextLabel title = new TextLabel(760, 75, 200, 125, head);
 		title.setSize(35);
 		
-		popped = new ScrollablePane(this, 500, 135, 280, 500);
+		popped = new ScrollablePane(this, 150, 135, 930, 500);
 		popped.setBackground(new Color(108, 195, 252));
 		populateScroll(x);
 		
-		Button exit = new Button(750, 50, 50, 50, "x", popped.getBackground(), new Action() {
+		Button exit = new Button(970, 50, 50, 50, "x", popped.getBackground(), new Action() {
 			
 			public void act() {
 				PatientInfoScreen.popper = 0;

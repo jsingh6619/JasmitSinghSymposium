@@ -113,6 +113,7 @@ public class AboutScreen extends AbstractScreen {
 			doctors.setSize(20);
 			scroll.addObject(bachelors);
 			scroll.addObject(doctors);
+			scroll.update();
 		}
 		
 		if(popper == 2) {
@@ -123,6 +124,7 @@ public class AboutScreen extends AbstractScreen {
 			email.setSize(20);
 			scroll.addObject(phone);
 			scroll.addObject(email);
+			scroll.update();
 		}
 		
 		if(popper == 3) {
@@ -133,6 +135,7 @@ public class AboutScreen extends AbstractScreen {
 			code.setSize(20);
 			scroll.addObject(filler);
 			scroll.addObject(code);
+			scroll.update();
 		}
 	}
 	

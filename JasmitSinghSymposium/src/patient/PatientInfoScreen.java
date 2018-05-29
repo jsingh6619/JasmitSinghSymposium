@@ -184,7 +184,7 @@ public class PatientInfoScreen extends AbstractScreen {
 			TextArea quantity = new TextArea(195, 0, 180, 45, "Dosage");
 			TextArea dateBegin = new TextArea(370, 0, 180, 45, "Date Begin");
 			TextArea dateEnd = new TextArea(550, 0, 180, 45, "Date End");
-			TextArea docPrescriber = new TextArea(730, 0, 180, 45, "Prescriber");
+			TextArea prescriber = new TextArea(730, 0, 180, 45, "Prescriber");
 			
 			int row = 0;
 			// fix this by having it increment by 1, and check to see the value after mod 5, to allign it how i prefer
@@ -218,18 +218,69 @@ public class PatientInfoScreen extends AbstractScreen {
 			quantity.setSize(24);
 			dateBegin.setSize(24);
 			dateEnd.setSize(24);
-			docPrescriber.setSize(24);
+			prescriber.setSize(24);
 			
 			popped.addObject(rTitle);
 			popped.addObject(quantity);
 			popped.addObject(dateBegin);
 			popped.addObject(dateEnd);
-			popped.addObject(docPrescriber);
+			popped.addObject(prescriber);
 			popped.update();
 		}
 		
 		//immunizations
 		if(condition == 4) {
+			TextArea vaccine = new TextArea(15, 0, 160, 45, "Vaccine");
+			TextArea manufacturer = new TextArea(175, 0, 205, 45, "Manufacturer");
+			TextArea lot = new TextArea(405, 0, 100, 45, "Lot");
+			TextArea dosage = new TextArea(505, 0, 110, 45, "Dosage");
+			TextArea date = new TextArea(615, 0, 125, 45, "Date");
+			TextArea administrator = new TextArea(740, 0, 180, 45, "Administrator");
+			
+			int row = 0;
+			// fix this by having it increment by 1, and check to see the value after mod 5, to allign it how i prefer
+			for(int i = 1; i < maxLines("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/immunizations") + 1; i++) {
+				int xAlign = i % 6;
+				if(xAlign == 1) {
+					xAlign = 15;
+				}
+				if(xAlign == 2) {
+					xAlign = 175;
+				}
+				if(xAlign == 3) {
+					xAlign = 405;
+				}
+				if(xAlign == 4) {
+					xAlign = 505;
+				}
+				if(xAlign == 5) {
+					xAlign = 615;
+				}
+				if(xAlign == 0) {
+					xAlign = 740;
+				}
+				TextArea info = new TextArea(xAlign, (row * 20) + 40, 340, 45, readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/immunizations"));
+				info.setSize(18);
+				
+				popped.addObject(info);
+				if(i % 6 == 0) {
+					row += 2;
+				}
+			}
+			
+			vaccine.setSize(24);
+			manufacturer.setSize(24);
+			lot.setSize(24);
+			dosage.setSize(24);
+			date.setSize(24);
+			administrator.setSize(24);
+			
+			popped.addObject(vaccine);
+			popped.addObject(manufacturer);
+			popped.addObject(lot);
+			popped.addObject(dosage);
+			popped.addObject(date);
+			popped.addObject(administrator);
 			popped.update();
 		}
 

@@ -180,37 +180,37 @@ public class PatientInfoScreen extends AbstractScreen {
 		
 		//prescriptions
 		if(condition == 3) {
-			TextArea rTitle = new TextArea(5, 0, 180, 45, "Rx No.");
-			TextArea quantity = new TextArea(185, 0, 180, 45, "Quantity");
-			TextArea dateBegin = new TextArea(360, 0, 180, 45, "Date Begin");
-			TextArea dateEnd = new TextArea(540, 0, 180, 45, "Date End");
-			TextArea docPrescriber = new TextArea(720, 0, 180, 45, "Prescriber");
+			TextArea rTitle = new TextArea(15, 0, 180, 45, "Rx No.");
+			TextArea quantity = new TextArea(195, 0, 180, 45, "Dosage");
+			TextArea dateBegin = new TextArea(370, 0, 180, 45, "Date Begin");
+			TextArea dateEnd = new TextArea(550, 0, 180, 45, "Date End");
+			TextArea docPrescriber = new TextArea(730, 0, 180, 45, "Prescriber");
 			
+			int row = 0;
 			// fix this by having it increment by 1, and check to see the value after mod 5, to allign it how i prefer
 			for(int i = 1; i < maxLines("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/prescription") + 1; i++) {
 				int xAlign = i % 5;
-				int row = 0;
 				if(xAlign == 1) {
-					xAlign = 5;
+					xAlign = 15;
 				}
 				if(xAlign == 2) {
-					xAlign = 185;
+					xAlign = 195;
 				}
 				if(xAlign == 3) {
-					xAlign = 360;
+					xAlign = 370;
 				}
 				if(xAlign == 4) {
-					xAlign = 540;
+					xAlign = 550;
 				}
 				if(xAlign == 0) {
-					xAlign = 720;
+					xAlign = 730;
 				}
-				TextArea info = new TextArea(xAlign, row, 340, 45, readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/prescription"));
+				TextArea info = new TextArea(xAlign, (row * 20) + 40, 340, 45, readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/prescription"));
 				info.setSize(18);
 				
 				popped.addObject(info);
-				if(i % 5 == 1) {
-					row++;
+				if(i % 5 == 0) {
+					row += 2;
 				}
 			}
 			
@@ -270,7 +270,7 @@ public class PatientInfoScreen extends AbstractScreen {
 	}
 	
 	public void createPopup(String head, int x) {
-		Button leftExit = new Button(0, 0, 480, 720, "", getA(), new Action() {
+		Button leftExit = new Button(0, 0, 150, 720, "", getA(), new Action() {
 			
 			public void act() {
 				PatientInfoScreen.popper = 0;
@@ -288,7 +288,7 @@ public class PatientInfoScreen extends AbstractScreen {
 		});
 		topExit.enable = false;
 		
-		Button bottomExit = new Button(0, 650, 1280, 70, "", getA(), new Action() {
+		Button bottomExit = new Button(0, 635, 1280, 85, "", getA(), new Action() {
 			
 			public void act() {
 				PatientInfoScreen.popper = 0;
@@ -297,7 +297,7 @@ public class PatientInfoScreen extends AbstractScreen {
 		});
 		bottomExit.enable = false;
 		
-		Button rightExit = new Button(800, 0, 480, 720, "", getA(), new Action() {
+		Button rightExit = new Button(1080, 0, 200, 720, "", getA(), new Action() {
 			
 			public void act() {
 				PatientInfoScreen.popper = 0;
@@ -305,6 +305,24 @@ public class PatientInfoScreen extends AbstractScreen {
 			}
 		});
 		rightExit.enable = false;
+		
+		Button popupRightExit = new Button(1020, 0, 260, 135, "", getA(), new Action() {
+			
+			public void act() {
+				PatientInfoScreen.popper = 0;
+				Main.main.setScreen(new PatientInfoScreen(getWidth(), getHeight()));
+			}
+		});
+		popupRightExit.enable = false;
+
+		Button popupLeftExit = new Button(0, 0, 700, 135, "", getA(), new Action() {
+	
+			public void act() {
+				PatientInfoScreen.popper = 0;
+				Main.main.setScreen(new PatientInfoScreen(getWidth(), getHeight()));
+			}
+		});
+		popupLeftExit.enable = false;
 		
 		getViewObjects().removeAll(getViewObjects());
 
@@ -334,6 +352,8 @@ public class PatientInfoScreen extends AbstractScreen {
 		getViewObjects().add(topExit);
 		getViewObjects().add(bottomExit);
 		getViewObjects().add(rightExit);
+		getViewObjects().add(popupRightExit);
+		getViewObjects().add(popupLeftExit);
 		getViewObjects().add(popup);
 		getViewObjects().add(title);
 		getViewObjects().add(popped);

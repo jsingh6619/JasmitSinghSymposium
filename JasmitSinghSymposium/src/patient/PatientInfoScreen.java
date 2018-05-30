@@ -90,7 +90,7 @@ public class PatientInfoScreen extends AbstractScreen {
 		
 		famHist = new ScrollablePane(this, 100, 300, 450, 160);
 		famHist.setBackground(getB());
-		populateScroll(6);
+		populateScroll(4);
 		
 		TextArea allergy = new TextArea(100, 460, 450, 50, "Allergies");
 		allergy.setCustomTextColor(Color.WHITE);
@@ -98,7 +98,7 @@ public class PatientInfoScreen extends AbstractScreen {
 		
 		allergies = new ScrollablePane(this, 100, 510, 450, 160);
 		allergies.setBackground(getE());
-		populateScroll(7);
+		populateScroll(5);
 		
 		viewObjects.add(hist);
 		viewObjects.add(allergy);
@@ -114,18 +114,16 @@ public class PatientInfoScreen extends AbstractScreen {
 		});
 		visits.setSize(20);
 		
-		Button notes = new Button(600, 550, 125, 125, "Notes", getG(), new Action() {
+		Button history = new Button(600, 550, 125, 125, "History", getG(), new Action() {
 			public void act() {
-				PatientInfoScreen.popper = 2;
-				PatientInfoScreen.head = "     Notes     ";
-				Main.main.setScreen(new PatientInfoScreen(getWidth(), getHeight()));
+				Main.main.setScreen(new HistoryScreen(getWidth(), getHeight()));
 			}
 		});
-		notes.setSize(20);
+		history.setSize(20);
 		
 		Button prescripitions = new Button(715, 275, 157, 157, "Prescriptions", getC(), new Action() {
 			public void act() {
-				PatientInfoScreen.popper = 3;
+				PatientInfoScreen.popper = 2;
 				PatientInfoScreen.head = "Prescriptions";
 				Main.main.setScreen(new PatientInfoScreen(getWidth(), getHeight()));
 			}
@@ -134,7 +132,7 @@ public class PatientInfoScreen extends AbstractScreen {
 		
 		Button immunizations = new Button(1000, 250, 142, 142, "Immunizations", getJ(), new Action() {
 			public void act() {
-				PatientInfoScreen.popper = 4;
+				PatientInfoScreen.popper = 3;
 				PatientInfoScreen.head = "Immunizations";
 				Main.main.setScreen(new PatientInfoScreen(getWidth(), getHeight()));
 			}
@@ -143,21 +141,21 @@ public class PatientInfoScreen extends AbstractScreen {
 	
 		Button update = new Button(1100, 100, 100, 100, "Update", getI(), new Action() {
 			public void act() {
-				PatientInfoScreen.popper = 5;
+				PatientInfoScreen.popper = 4;
 				PatientInfoScreen.head = "     Update     ";
-				Main.main.setScreen(new PatientInfoScreen(getWidth(), getHeight()));
+				Main.main.setScreen(new UpdateScreen(getWidth(), getHeight()));
 			}
 		});
 		update.setSize(20);
 	
 		AbstractButton.circleButton(visits);
-		AbstractButton.circleButton(notes);
+		AbstractButton.circleButton(history);
 		AbstractButton.circleButton(prescripitions);
 		AbstractButton.circleButton(immunizations);
 		AbstractButton.circleButton(update);
 		
 		viewObjects.add(visits);
-		viewObjects.add(notes);
+		viewObjects.add(history);
 		viewObjects.add(prescripitions);
 		viewObjects.add(immunizations);
 		viewObjects.add(update);
@@ -173,19 +171,8 @@ public class PatientInfoScreen extends AbstractScreen {
 			popped.update();
 		}
 		
-		//notes
-		if(condition == 2) {
-			String note = "";
-			for (int i = 10; i < maxLines("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info") + 1; i++) {
-				note += readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info");
-				note += "\n";
-			}			
-			popped.addObject(new TextArea(0, 0, 1280, 720, note));
-			popped.update();
-		}
-		
 		//prescriptions
-		if(condition == 3) {
+		if(condition == 2) {
 			TextArea rTitle = new TextArea(15, 0, 180, 45, "Rx No.");
 			TextArea quantity = new TextArea(195, 0, 180, 45, "Dosage");
 			TextArea dateBegin = new TextArea(370, 0, 180, 45, "Date Begin");
@@ -235,7 +222,7 @@ public class PatientInfoScreen extends AbstractScreen {
 		}
 		
 		//immunizations
-		if(condition == 4) {
+		if(condition == 3) {
 			TextArea vaccine = new TextArea(15, 0, 160, 45, "Vaccine");
 			TextArea manufacturer = new TextArea(175, 0, 205, 45, "Manufacturer");
 			TextArea lot = new TextArea(405, 0, 100, 45, "Lot");
@@ -289,14 +276,9 @@ public class PatientInfoScreen extends AbstractScreen {
 			popped.addObject(administrator);
 			popped.update();
 		}
-
-		//update
-		if(condition == 5) {
-			popped.update();
-		}
 		
 		//famHist
-		if(condition == 6) {
+		if(condition == 4) {
 			for(int i = 1; i < maxLines("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/health") + 1; i++) {
 				TextArea health = new TextArea(10, 25*(i-1), 340, 45, readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/health"));
 				health.setSize(24);
@@ -311,7 +293,7 @@ public class PatientInfoScreen extends AbstractScreen {
 		}
 		
 		//alergies
-		if(condition == 7) {
+		if(condition == 5) {
 			for(int i = 1; i < maxLines("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/allergies") + 1; i++) {
 				TextArea allergy = new TextArea(10, 25*(i-1), 340, 45, readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/allergies"));
 				allergy.setSize(24);

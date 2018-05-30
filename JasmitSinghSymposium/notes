@@ -1,2 +1,0 @@
-All screens get instantiated when the program first starts
-When I wish to change screens, create a new instance, since it depends on two variable from the Main file which gets changed

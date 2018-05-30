@@ -114,14 +114,14 @@ public class PatientInfoScreen extends AbstractScreen {
 		});
 		visits.setSize(20);
 		
-		Button history = new Button(600, 550, 125, 125, "History", getG(), new Action() {
+		Button notes = new Button(600, 550, 125, 125, "Notes", getG(), new Action() {
 			public void act() {
 				PatientInfoScreen.popper = 2;
-				PatientInfoScreen.head = "     History     ";
+				PatientInfoScreen.head = "     Notes     ";
 				Main.main.setScreen(new PatientInfoScreen(getWidth(), getHeight()));
 			}
 		});
-		history.setSize(20);
+		notes.setSize(20);
 		
 		Button prescripitions = new Button(715, 275, 157, 157, "Prescriptions", getC(), new Action() {
 			public void act() {
@@ -151,13 +151,13 @@ public class PatientInfoScreen extends AbstractScreen {
 		update.setSize(20);
 	
 		AbstractButton.circleButton(visits);
-		AbstractButton.circleButton(history);
+		AbstractButton.circleButton(notes);
 		AbstractButton.circleButton(prescripitions);
 		AbstractButton.circleButton(immunizations);
 		AbstractButton.circleButton(update);
 		
 		viewObjects.add(visits);
-		viewObjects.add(history);
+		viewObjects.add(notes);
 		viewObjects.add(prescripitions);
 		viewObjects.add(immunizations);
 		viewObjects.add(update);
@@ -173,8 +173,14 @@ public class PatientInfoScreen extends AbstractScreen {
 			popped.update();
 		}
 		
-		//history
+		//notes
 		if(condition == 2) {
+			String note = "";
+			for (int i = 10; i < maxLines("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info") + 1; i++) {
+				note += readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info");
+				note += "\n";
+			}			
+			popped.addObject(new TextArea(0, 0, 1280, 720, note));
 			popped.update();
 		}
 		

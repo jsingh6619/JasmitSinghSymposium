@@ -4,15 +4,18 @@ import java.awt.*;
 import java.io.*;
 import java.util.List;
 
-import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.ScrollablePane;
-import guiTeacher.components.TextLabel;
+import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.*;
 import guiTeacher.userInterfaces.*;
 
 public abstract class AbstractScreen extends FullFunctionScreen {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static Color a = new Color(47, 48, 66);			//background color
 	private static Color b = new Color(250, 109, 109);
 	private static Color c = new Color(11, 156, 250);
@@ -73,6 +76,7 @@ public abstract class AbstractScreen extends FullFunctionScreen {
 		return j;
 	}
 	
+	@SuppressWarnings("resource")
 	public String readLine(int x, String a) {
 		String line = "";
 		try {
@@ -89,6 +93,7 @@ public abstract class AbstractScreen extends FullFunctionScreen {
 		return line;
 	}
 	
+	@SuppressWarnings("resource")
 	public int maxLines(String a) {
 		int x = 0;
 		try {
@@ -102,5 +107,26 @@ public abstract class AbstractScreen extends FullFunctionScreen {
 			e.printStackTrace();
 		}
 		return x;
+	}
+	
+	public void drawTextArea(TextArea text, int size) {
+		text.setSize(size);
+		getViewObjects().add(text);
+	}
+	
+	public void drawTextArea(TextArea text, int size, ScrollablePane x) {
+		text.setSize(size);
+		x.addObject(text);
+	}
+	
+	public void drawTextArea(TextArea text, int size, Color col) {
+		text.setSize(size);
+		text.setCustomTextColor(col);
+		getViewObjects().add(text);
+	}
+	
+	public void backButton(Button x) {
+		x.setEnabled(false);
+		getViewObjects().add(x);
 	}
 }

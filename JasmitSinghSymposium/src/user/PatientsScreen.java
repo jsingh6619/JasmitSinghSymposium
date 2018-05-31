@@ -50,11 +50,7 @@ public class PatientsScreen extends AbstractScreen {
 		//no patient found
 		if(initial == 1) {
 			viewObjects.remove(scroll);
-			
-			TextArea error = new TextArea(50, 125, 920, 520, "NO SUCH PATIENT");
-			error.setCustomTextColor(Color.RED);
-			error.setSize(36);
-			viewObjects.add(error);
+			drawTextArea(new TextArea(50, 125, 920, 520, "NO SUCH PATIENT"), 36, Color.RED);
 		}
 		
 		//patient found
@@ -75,20 +71,14 @@ public class PatientsScreen extends AbstractScreen {
 		title.setSize(40);
 		viewObjects.add(title);
 		
-		TextArea nameHead = new TextArea(990, 125, 125, 100, "Name: ");
-		nameHead.setCustomTextColor(Color.WHITE);
-		nameHead.setSize(20);
-		viewObjects.add(nameHead);
+		drawTextArea(new TextArea(990, 125, 125, 100, "Name: "), 20, Color.WHITE);
 		
 		nameInput = new TextField(1050, 123, 175, 35, "");
 		nameInput.setSize(20);
 		nameInput.setDrawBorder(false);
 		viewObjects.add(nameInput);
 		
-		TextArea birthHead = new TextArea(990, 175, 125, 100, "D.O.B: ");
-		birthHead.setCustomTextColor(Color.WHITE);
-		birthHead.setSize(20);
-		viewObjects.add(birthHead);
+		drawTextArea(new TextArea(990, 175, 125, 100, "D.O.B: "), 20, Color.WHITE);
 		
 		birthdayInput = new TextField(1050, 173, 175, 35, "");
 		birthdayInput.setSize(20);
@@ -127,7 +117,6 @@ public class PatientsScreen extends AbstractScreen {
 
 	}
 	
-//one problem i am having is setting the patient correctly. I am creating the buttons within a for loop, and therefore can''t access any variables because "defined in an enclosing scope must be final or effectively final" 
 	public void populateScroll() {
 		scroll.removeAll();
 		int row = 0;

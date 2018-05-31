@@ -12,8 +12,6 @@ import guiTeacher.components.TextArea;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import main.Main;
-import user.AboutScreen;
-import user.PatientsScreen;
 
 public class PatientInfoScreen extends AbstractScreen {
 
@@ -36,74 +34,48 @@ public class PatientInfoScreen extends AbstractScreen {
 		super.initAllObjects(viewObjects);
 		file = "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info";
 	
+		//for patient basic info
+		
 		Button back = new Button(100, 50, 540, 200, "", getD(), new Action() {
 			public void act() {
 			}
 		});
-		back.setEnabled(false);
+		backButton(back);
 		
-		TextArea name = new TextArea(115, 50, 400, 225, Main.getPatient());
-		name.setSize(36);
+		drawTextArea(new TextArea(115, 50, 400, 225, Main.getPatient()), 36);
+		drawTextArea(new TextArea(115, 106, 400, 225, readLine(1,file)), 24);
+		drawTextArea(new TextArea(115, 188, 400, 225, readLine(2,file)), 18);
+		drawTextArea(new TextArea(115, 150, 400, 225, readLine(3,file)), 18);
 		
-		TextArea dob = new TextArea(115, 106, 400, 225, readLine(1,file));
-		dob.setSize(24);
-		
-		TextArea number = new TextArea(115, 188, 400, 225, readLine(2,file));
-		number.setSize(18);
-		
-		TextArea gender = new TextArea(115, 150, 400, 225, readLine(3,file));
-		gender.setSize(18);
-		
-		viewObjects.add(back);
-		viewObjects.add(name);
-		viewObjects.add(dob);
-		viewObjects.add(number);
-		viewObjects.add(gender);
+		//for patient insurance info
 		
 		Button insurBank = new Button(690, 50, 350, 200, "", getH(), new Action() {
 			public void act() {
 			}
 		});
-		insurBank.setEnabled(false);
+		backButton(insurBank);
 		
-		TextArea company = new TextArea(705, 50, 400, 225, readLine(5,file));
-		company.setSize(34);
+		//for the rest of the info
 		
-		TextArea id = new TextArea(705, 106, 400, 225, readLine(6,file));
-		id.setSize(24);
-		
-		TextArea plan = new TextArea(705, 188, 400, 225, readLine(7,file));
-		plan.setSize(18);
-		
-		TextArea contInfo = new TextArea(705, 150, 400, 225, readLine(8,file));
-		contInfo.setSize(18);
-		
-		viewObjects.add(insurBank);
-		viewObjects.add(company);
-		viewObjects.add(id);
-		viewObjects.add(plan);
-		viewObjects.add(contInfo);
-		
-		TextArea hist = new TextArea(100, 250, 450, 50, "Family History");
-		hist.setCustomTextColor(Color.WHITE);
-		hist.setSize(25);
+		drawTextArea(new TextArea(705, 50, 400, 225, readLine(5,file)), 34);
+		drawTextArea(new TextArea(705, 106, 400, 225, readLine(6,file)), 24);
+		drawTextArea(new TextArea(705, 188, 400, 225, readLine(7,file)), 18);
+		drawTextArea(new TextArea(705, 150, 400, 225, readLine(8,file)), 18);
+		drawTextArea(new TextArea(100, 250, 450, 50, "Family History"), 25, Color.WHITE);
+		drawTextArea(new TextArea(100, 460, 450, 50, "Allergies"), 25, Color.WHITE);
 		
 		famHist = new ScrollablePane(this, 100, 300, 450, 160);
 		famHist.setBackground(getB());
 		populateScroll(4);
 		
-		TextArea allergy = new TextArea(100, 460, 450, 50, "Allergies");
-		allergy.setCustomTextColor(Color.WHITE);
-		allergy.setSize(25);
-		
 		allergies = new ScrollablePane(this, 100, 510, 450, 160);
 		allergies.setBackground(getE());
 		populateScroll(5);
 		
-		viewObjects.add(hist);
-		viewObjects.add(allergy);
-		viewObjects.add(famHist);
+		viewObjects.add(famHist); 
 		viewObjects.add(allergies);
+		
+		//for the pop-ups/change to screens
 		
 		Button visits = new Button(575, 375, 150, 150, "Visits", getF(), new Action() {
 			public void act() {
@@ -173,14 +145,13 @@ public class PatientInfoScreen extends AbstractScreen {
 		
 		//prescriptions
 		if(condition == 2) {
-			TextArea rTitle = new TextArea(15, 0, 180, 45, "Rx No.");
-			TextArea quantity = new TextArea(195, 0, 180, 45, "Dosage");
-			TextArea dateBegin = new TextArea(370, 0, 180, 45, "Date Begin");
-			TextArea dateEnd = new TextArea(550, 0, 180, 45, "Date End");
-			TextArea prescriber = new TextArea(730, 0, 180, 45, "Prescriber");
+			drawTextArea(new TextArea(15, 0, 180, 45, "Rx No."), 24, popped);
+			drawTextArea(new TextArea(195, 0, 180, 45, "Dosage"), 24, popped);
+			drawTextArea(new TextArea(370, 0, 180, 45, "Date Begin"), 24, popped);
+			drawTextArea(new TextArea(550, 0, 180, 45, "Date End"), 24, popped);
+			drawTextArea(new TextArea(730, 0, 180, 45, "Prescriber"), 24, popped);
 			
 			int row = 0;
-			// fix this by having it increment by 1, and check to see the value after mod 5, to allign it how i prefer
 			for(int i = 1; i < maxLines("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/prescription") + 1; i++) {
 				int xAlign = i % 5;
 				if(xAlign == 1) {
@@ -198,40 +169,27 @@ public class PatientInfoScreen extends AbstractScreen {
 				if(xAlign == 0) {
 					xAlign = 730;
 				}
-				TextArea info = new TextArea(xAlign, (row * 20) + 40, 340, 45, readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/prescription"));
-				info.setSize(18);
 				
-				popped.addObject(info);
+				drawTextArea(new TextArea(xAlign, (row * 20) + 40, 340, 45, readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/prescription")), 18, popped);
+				
 				if(i % 5 == 0) {
 					row += 2;
 				}
 			}
 			
-			rTitle.setSize(24);
-			quantity.setSize(24);
-			dateBegin.setSize(24);
-			dateEnd.setSize(24);
-			prescriber.setSize(24);
-			
-			popped.addObject(rTitle);
-			popped.addObject(quantity);
-			popped.addObject(dateBegin);
-			popped.addObject(dateEnd);
-			popped.addObject(prescriber);
 			popped.update();
 		}
 		
 		//immunizations
 		if(condition == 3) {
-			TextArea vaccine = new TextArea(15, 0, 160, 45, "Vaccine");
-			TextArea manufacturer = new TextArea(175, 0, 205, 45, "Manufacturer");
-			TextArea lot = new TextArea(405, 0, 100, 45, "Lot");
-			TextArea dosage = new TextArea(505, 0, 110, 45, "Dosage");
-			TextArea date = new TextArea(615, 0, 125, 45, "Date");
-			TextArea administrator = new TextArea(740, 0, 180, 45, "Administrator");
+			drawTextArea(new TextArea(15, 0, 160, 45, "Vaccine"), 24, popped);
+			drawTextArea(new TextArea(175, 0, 205, 45, "Manufacturer"), 24, popped);
+			drawTextArea(new TextArea(405, 0, 100, 45, "Lot"), 24, popped);
+			drawTextArea(new TextArea(505, 0, 110, 45, "Dosage"), 24, popped);
+			drawTextArea(new TextArea(615, 0, 125, 45, "Date"), 24, popped);
+			drawTextArea(new TextArea(740, 0, 180, 45, "Administrator"), 24, popped);
 			
 			int row = 0;
-			// fix this by having it increment by 1, and check to see the value after mod 5, to allign it how i prefer
 			for(int i = 1; i < maxLines("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/immunizations") + 1; i++) {
 				int xAlign = i % 6;
 				if(xAlign == 1) {
@@ -252,42 +210,23 @@ public class PatientInfoScreen extends AbstractScreen {
 				if(xAlign == 0) {
 					xAlign = 740;
 				}
-				TextArea info = new TextArea(xAlign, (row * 20) + 40, 340, 45, readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/immunizations"));
-				info.setSize(18);
 				
-				popped.addObject(info);
+				drawTextArea(new TextArea(xAlign, (row * 20) + 40, 340, 45, readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/immunizations")), 18, popped);
+
 				if(i % 6 == 0) {
 					row += 2;
 				}
 			}
-			
-			vaccine.setSize(24);
-			manufacturer.setSize(24);
-			lot.setSize(24);
-			dosage.setSize(24);
-			date.setSize(24);
-			administrator.setSize(24);
-			
-			popped.addObject(vaccine);
-			popped.addObject(manufacturer);
-			popped.addObject(lot);
-			popped.addObject(dosage);
-			popped.addObject(date);
-			popped.addObject(administrator);
 			popped.update();
 		}
 		
 		//famHist
 		if(condition == 4) {
 			for(int i = 1; i < maxLines("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/health") + 1; i++) {
-				TextArea health = new TextArea(10, 25*(i-1), 340, 45, readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/health"));
-				health.setSize(24);
-				famHist.addObject(health);
+				drawTextArea(new TextArea(10, 25*(i-1), 340, 45, readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/health")), 24, famHist);
 			}
 			if(readLine(1, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/health") == null){
-				TextArea na = new TextArea(10, 0, 340, 45, "NONE");
-				na.setSize(24);
-				famHist.addObject(na);
+				drawTextArea(new TextArea(10, 0, 340, 45, "NONE"), 24, famHist);
 			}
 			famHist.update();
 		}
@@ -295,14 +234,10 @@ public class PatientInfoScreen extends AbstractScreen {
 		//alergies
 		if(condition == 5) {
 			for(int i = 1; i < maxLines("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/allergies") + 1; i++) {
-				TextArea allergy = new TextArea(10, 25*(i-1), 340, 45, readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/allergies"));
-				allergy.setSize(24);
-				allergies.addObject(allergy);
+				drawTextArea(new TextArea(10, 25*(i-1), 340, 45, readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/allergies")), 24, allergies);
 			}
 			if(readLine(1, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/allergies") == null){
-				TextArea na = new TextArea(10, 0, 340, 45, "NONE");
-				na.setSize(24);
-				allergies.addObject(na);
+				drawTextArea(new TextArea(10, 0, 340, 45, "NONE"), 24, allergies);
 			}
 			allergies.update();
 		}

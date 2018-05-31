@@ -4,11 +4,12 @@ import java.awt.Color;
 
 import guiTeacher.components.*;
 
-public abstract class AbstractButton extends Button {
+public class AbstractButton extends Button {
 	
 	private static Color a = new Color(153, 217, 234);
 	private static Color b = new Color(241, 75, 84);
 	private static Color c = new Color(111, 119, 217);
+	public boolean enable = false;
 	
 	public AbstractButton(int x, int y, int w, int h, String text, Action action) {
 		super(x, y, w, h, text, action);

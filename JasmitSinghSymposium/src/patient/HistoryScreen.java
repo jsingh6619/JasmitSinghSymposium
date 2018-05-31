@@ -5,12 +5,15 @@ import java.util.List;
 import abstractClasses.AbstractScreen;
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
-import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import main.Main;
 
 public class HistoryScreen extends AbstractScreen {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static int popper = 0;
 
 	public HistoryScreen(int width, int height) {

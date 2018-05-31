@@ -28,14 +28,11 @@ public class UserInfoScreen extends AbstractScreen {
 		});
 		back.setEnabled(false);
 
-		TextArea info = new TextArea(765, 50, 400, 225, Main.getDoctor());
-		TextArea info1 = new TextArea(765, 106, 400, 225, readLine(2,file));
-		TextArea info2 = new TextArea(765, 150, 400, 225, readLine(5,file));
-		TextArea info3 = new TextArea(765, 188, 400, 225, readLine(8,file));
-		info.setSize(36);
-		info1.setSize(24);
-		info2.setSize(18);
-		info3.setSize(18);
+		drawTextArea(new TextArea(765, 50, 400, 225, Main.getDoctor()), 36);
+		drawTextArea(new TextArea(765, 106, 400, 225, readLine(2,file)), 24);
+		drawTextArea(new TextArea(765, 150, 400, 225, readLine(5,file)), 18);
+		drawTextArea(new TextArea(765, 188, 400, 225, readLine(8,file)), 18);
+
 		Button patients = new Button(225, 203, 185, 185, "Patients", getG(), new Action() {
 			public void act() {
 				Main.main.setScreen(new PatientsScreen(getWidth(), getHeight()));
@@ -60,11 +57,6 @@ public class UserInfoScreen extends AbstractScreen {
 		about.setSize(20);
 		AbstractButton.circleButton(about);
 		
-		viewObjects.add(back);
-		viewObjects.add(info);
-		viewObjects.add(info1);
-		viewObjects.add(info2);
-		viewObjects.add(info3);
 		viewObjects.add(patients);
 		viewObjects.add(calendar);
 		viewObjects.add(about);

@@ -47,8 +47,9 @@ public class AboutScreen extends AbstractScreen {
 			}
 		});
 		back.setEnabled(false);
+		viewObjects.add(back);
 		
-		drawTextArea(new TextArea(765, 50, 400, 225, Main.getDoctor()), 36);
+		drawTextArea(new TextArea(115, 50, 400, 225, Main.getDoctor()), 36);
 		drawTextArea(new TextArea(115, 106, 400, 225, readLine(2,file)), 24);
 		drawTextArea(new TextArea(115, 150, 400, 225, readLine(5,file)), 18);
 		drawTextArea(new TextArea(115, 188, 400, 225, readLine(8,file)), 18);

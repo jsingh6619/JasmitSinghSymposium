@@ -37,6 +37,7 @@ public class HistoryScreen extends AbstractScreen {
 	for (int i = 10; i < maxLines("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info") + 1; i++) {
 		note += readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info");
 		note += "\n";
+		note += note;// (DELETE THIS LINE)
 	}
 
 	//popped.addObject(new TextArea(0, 0, 1280, 720, note));

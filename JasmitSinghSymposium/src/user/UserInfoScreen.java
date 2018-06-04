@@ -27,7 +27,8 @@ public class UserInfoScreen extends AbstractScreen {
 			}
 		});
 		back.setEnabled(false);
-
+		viewObjects.add(back);
+		
 		drawTextArea(new TextArea(765, 50, 400, 225, Main.getDoctor()), 36);
 		drawTextArea(new TextArea(765, 106, 400, 225, readLine(2,file)), 24);
 		drawTextArea(new TextArea(765, 150, 400, 225, readLine(5,file)), 18);

@@ -102,9 +102,16 @@ public class UpdateScreen extends AbstractScreen {
 	
 	public void reWrite() {
 		File override = new File("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info");
+		String notes = "";
+		for (int i = 10; i < maxLines("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info") + 1; i++) {
+			if(i != 10) {
+				notes += "\n";
+			}
+			notes += readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info");
+		}
 		override.delete();
 		File newFile = new File("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info");
-		String source = nameChange.getText() + "\n" + birthdayChange.getText() + "\n" + genderChange.getText() + "\n" + numberChange.getText() + "\n" + insuranceCompanyChange.getText() + "\n" + insuranceIDChange.getText() + "\n" + insurancePlanChange.getText()  + "\n" + insuranceNumberChange.getText();
+		String source = birthdayChange.getText() + "\n" + numberChange.getText() + "\n" + genderChange.getText() + "\n\n" + insuranceCompanyChange.getText() + "\n" + insuranceIDChange.getText() + "\n" + insurancePlanChange.getText()  + "\n" + insuranceNumberChange.getText() + "\n\n" + notes;
 		try {
 		    FileWriter f2 = new FileWriter(newFile, false);
 		    f2.write(source);

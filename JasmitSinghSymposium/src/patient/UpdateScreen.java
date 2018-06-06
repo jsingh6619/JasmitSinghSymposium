@@ -87,6 +87,8 @@ public class UpdateScreen extends AbstractScreen {
 			
 			public void act() {
 				reWrite();
+				PatientInfoScreen.popper = 0;
+				Main.main.setScreen(new PatientInfoScreen(getWidth(), getHeight()));
 			}
 		});
 		viewObjects.add(update);
@@ -109,6 +111,6 @@ public class UpdateScreen extends AbstractScreen {
 		    f2.close();
 		} catch (IOException e) {
 		    e.printStackTrace();
-		}  
+		}
 	}
 }

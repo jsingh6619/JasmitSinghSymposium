@@ -86,8 +86,6 @@ public class UpdateScreen extends AbstractScreen {
 		Button update = new Button(150, 600, 100, 100, "TEST", new Action() {
 			
 			public void act() {
-				numberChange.setText("("+numberChange.getText().substring(0, 3) + ")" + numberChange.getText().substring(3, 6) + "-" + numberChange.getText().substring(6));
-				numberChange.update();
 				reWrite();
 			}
 		});
@@ -101,17 +99,16 @@ public class UpdateScreen extends AbstractScreen {
 	}
 	
 	public void reWrite() {
-//		File fold=new File("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info");
-//		fold.delete();
-//		File fnew=new File("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info");
+		File override = new File("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info");
+		override.delete();
+		File newFile = new File("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info");
 		String source = nameChange.getText() + "\n" + birthdayChange.getText() + "\n" + genderChange.getText() + "\n" + numberChange.getText() + "\n" + insuranceCompanyChange.getText() + "\n" + insuranceIDChange.getText() + "\n" + insurancePlanChange.getText()  + "\n" + insuranceNumberChange.getText();
-		System.out.println(source);
-//		try {
-//		    FileWriter f2 = new FileWriter(fnew, false);
-//		    f2.write(source);
-//		    f2.close();
-//		} catch (IOException e) {
-//		    e.printStackTrace();
-//		}  
+		try {
+		    FileWriter f2 = new FileWriter(newFile, false);
+		    f2.write(source);
+		    f2.close();
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}  
 	}
 }

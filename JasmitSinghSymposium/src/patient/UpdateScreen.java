@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+import abstractClasses.AbstractButton;
 import abstractClasses.AbstractScreen;
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
@@ -38,52 +39,53 @@ public class UpdateScreen extends AbstractScreen {
 	
 	public void initAllObjects(List<Visible> viewObjects) {
 		super.initAllObjects(viewObjects);
-		TextArea header = new TextArea(25, 25, 1230, 670, "What would you like to edit for " + Main.getPatient() + "?");
+		TextArea header = new TextArea(150, 50, 1230, 670, "What would you like to edit for " + Main.getPatient() + "?");
 		header.setSize(45);
+		header.setCustomTextColor(Color.WHITE);
 		viewObjects.add(header);
 		
-		drawHead(new TextArea(150, 125, 225, 100, "Name: "));
-		drawHead(new TextArea(150, 175, 225, 100, "D.O.B: "));
-		drawHead(new TextArea(150, 225, 225, 100, "Gender: "));
-		drawHead(new TextArea(150, 275, 225, 100, "Number: "));
-		drawHead(new TextArea(150, 325, 225, 100, "Insurance Company: "));
-		drawHead(new TextArea(150, 375, 225, 100, "Insurance ID: "));
-		drawHead(new TextArea(150, 425, 225, 100, "Insurance Plan: "));
-		drawHead(new TextArea(150, 475, 225, 100, "Insurance Number: "));
+		drawHead(new TextArea(150, 150, 225, 100, "Name: "));
+		drawHead(new TextArea(150, 200, 225, 100, "D.O.B: "));
+		drawHead(new TextArea(150, 250, 225, 100, "Gender: "));
+		drawHead(new TextArea(150, 300, 225, 100, "Number: "));
+		drawHead(new TextArea(150, 350, 225, 100, "Insurance Company: "));
+		drawHead(new TextArea(150, 400, 225, 100, "Insurance ID: "));
+		drawHead(new TextArea(150, 450, 225, 100, "Insurance Plan: "));
+		drawHead(new TextArea(150, 500, 225, 100, "Insurance Number: "));
 		
-		nameChange = new TextField(375, 123, 175, 35, "print");
+		nameChange = new TextField(375, 148, 175, 35, "");
 		nameChange.setSize(20);
 		viewObjects.add(nameChange);
 		
-		birthdayChange = new TextField(375, 173, 175, 35, "print");
+		birthdayChange = new TextField(375, 198, 175, 35, "");
 		birthdayChange.setSize(20);
 		viewObjects.add(birthdayChange);
 		
-		genderChange = new TextField(375, 223, 175, 35, "print");
+		genderChange = new TextField(375, 248, 175, 35, "");
 		genderChange.setSize(20);
 		viewObjects.add(genderChange);
 		
-		numberChange = new TextField(375, 273, 175, 35, "print");
+		numberChange = new TextField(375, 298, 175, 35, "");
 		numberChange.setSize(20);
 		viewObjects.add(numberChange);
 		
-		insuranceCompanyChange = new TextField(375, 323, 175, 35, "print");
+		insuranceCompanyChange = new TextField(375, 348, 175, 35, "");
 		insuranceCompanyChange.setSize(20);
 		viewObjects.add(insuranceCompanyChange);
 		
-		insuranceIDChange = new TextField(375, 373, 175, 35, "print");
+		insuranceIDChange = new TextField(375, 398, 175, 35, "");
 		insuranceIDChange.setSize(20);
 		viewObjects.add(insuranceIDChange);
 		
-		insurancePlanChange = new TextField(375, 423, 175, 35, "print");
+		insurancePlanChange = new TextField(375, 448, 175, 35, "");
 		insurancePlanChange.setSize(20);
 		viewObjects.add(insurancePlanChange);
 		
-		insuranceNumberChange = new TextField(375, 473, 175, 35, "print");
+		insuranceNumberChange = new TextField(375, 498, 175, 35, "");
 		insuranceNumberChange.setSize(20);
 		viewObjects.add(insuranceNumberChange);
 		
-		Button update = new Button(150, 600, 100, 100, "TEST", new Action() {
+		Button update = new Button(815, 250, 250, 250, "UPDATE", Color.GRAY, new Action() {
 			
 			public void act() {
 				reWrite();
@@ -91,6 +93,8 @@ public class UpdateScreen extends AbstractScreen {
 				Main.main.setScreen(new PatientInfoScreen(getWidth(), getHeight()));
 			}
 		});
+		update.setSize(20);
+		AbstractButton.circleButton(update);
 		viewObjects.add(update);
 	}
 	
@@ -101,7 +105,7 @@ public class UpdateScreen extends AbstractScreen {
 	}
 	
 	public void reWrite() {
-		File override = new File("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info");
+		File oldFile = new File("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info");
 		String notes = "";
 		for (int i = 10; i < maxLines("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info") + 1; i++) {
 			if(i != 10) {
@@ -109,15 +113,26 @@ public class UpdateScreen extends AbstractScreen {
 			}
 			notes += readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info");
 		}
-		override.delete();
+		oldFile.delete();
+		
 		File newFile = new File("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info");
-		String source = birthdayChange.getText() + "\n" + numberChange.getText() + "\n" + genderChange.getText() + "\n\n" + insuranceCompanyChange.getText() + "\n" + insuranceIDChange.getText() + "\n" + insurancePlanChange.getText()  + "\n" + insuranceNumberChange.getText() + "\n\n" + notes;
+		String text = birthdayChange.getText() + "\n" + numberChange.getText() + "\n" + genderChange.getText() + "\n\n" + insuranceCompanyChange.getText() + "\n" + insuranceIDChange.getText() + "\n" + insurancePlanChange.getText()  + "\n" + insuranceNumberChange.getText() + "\n\n" + notes;
 		try {
-		    FileWriter f2 = new FileWriter(newFile, false);
-		    f2.write(source);
-		    f2.close();
+		    FileWriter fWriter = new FileWriter(newFile, false);
+		    fWriter.write(text);
+		    fWriter.close();
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
+		
+		File nameChange = new File("resources/" + Main.getDoctor() + "/patients/" + nameChange.getText());
+		try {
+		    FileWriter fWriter = new FileWriter(nameChange, false);
+		    fWriter.write(text);
+		    fWriter.close();
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+		new File("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient()).renameTo(new File("resources/" + Main.getDoctor() + "/patients/" + nameChange.getText()));
 	}
 }

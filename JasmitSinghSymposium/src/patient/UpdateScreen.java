@@ -1,17 +1,15 @@
 package patient;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
-import abstractClasses.AbstractButton;
 import abstractClasses.AbstractScreen;
-import guiTeacher.components.Action;
-import guiTeacher.components.Button;
-import guiTeacher.components.TextArea;
-import guiTeacher.components.TextField;
+import guiTeacher.components.*;
 import guiTeacher.interfaces.Visible;
 import main.Main;
 
@@ -29,6 +27,10 @@ public class UpdateScreen extends AbstractScreen {
 	private TextField insuranceIDChange;
 	private TextField insuranceNumberChange;
 	private TextField insurancePlanChange;
+	private TextField famHistChange;
+	private TextField allergyChange;
+	public static ScrollablePane famHist;
+	public static ScrollablePane allergies;
 	public static TextField allegies;
 	public static TextField familyHistory;
 	
@@ -39,10 +41,15 @@ public class UpdateScreen extends AbstractScreen {
 	
 	public void initAllObjects(List<Visible> viewObjects) {
 		super.initAllObjects(viewObjects);
-		TextArea header = new TextArea(150, 50, 1230, 670, "What would you like to edit for " + Main.getPatient() + "?");
+		TextArea header = new TextArea(150, 35, 1230, 670, "What would you like to edit for " + Main.getPatient() + "?");
 		header.setSize(45);
 		header.setCustomTextColor(Color.WHITE);
 		viewObjects.add(header);
+		
+		TextArea info = new TextArea(150, 100, 1230, 670, "Remember to fill out all fields, or they will be left blank.");
+		info.setSize(25);
+		info.setCustomTextColor(Color.WHITE);
+		viewObjects.add(info);
 		
 		drawHead(new TextArea(150, 150, 225, 100, "Name: "));
 		drawHead(new TextArea(150, 200, 225, 100, "D.O.B: "));
@@ -85,7 +92,7 @@ public class UpdateScreen extends AbstractScreen {
 		insuranceNumberChange.setSize(20);
 		viewObjects.add(insuranceNumberChange);
 		
-		Button update = new Button(815, 250, 250, 250, "UPDATE", Color.GRAY, new Action() {
+		Button update = new Button(150, 550, 400, 100, "UPDATE", Color.GRAY, new Action() {
 			
 			public void act() {
 				reWrite();
@@ -94,10 +101,95 @@ public class UpdateScreen extends AbstractScreen {
 			}
 		});
 		update.setSize(20);
-		AbstractButton.circleButton(update);
 		viewObjects.add(update);
+		
+		famHist = new ScrollablePane(this, 600, 150, 530, 150);
+		famHist.setBackground(getB());
+		populateScroll(1);
+		
+		allergies = new ScrollablePane(this, 600, 400, 530, 150);
+		allergies.setBackground(getE());
+		populateScroll(2);
+		
+		viewObjects.add(famHist);
+		viewObjects.add(allergies);
+		
+		famHistChange = new TextField(605, 330, 255, 35, "");
+		famHistChange.setSize(20);
+		viewObjects.add(famHistChange);
+		
+		allergyChange = new TextField(605, 580, 255, 35, "");
+		allergyChange.setSize(20);
+		viewObjects.add(allergyChange);
+		
+		Button addFam = new Button(865, 320, 260, 20, "Add", Color.GRAY, new Action() {
+			
+			@Override
+			public void act() {
+				Component[] comp = famHist.getComponents();
+				System.out.println(comp.length);
+				String change = famHistChange.getText();
+//				famHist.add(new TextArea(10, y, 340, 45, change));
+//				for(int i = 0; i < famHist.getComponentCount(); i++)
+			}
+		});
+		
+		Button remFam = new Button(865, 350, 260, 20, "Remove", Color.GRAY, new Action() {
+			
+			@Override
+			public void act() {
+				
+			}
+		});
+		
+		viewObjects.add(addFam);
+		viewObjects.add(remFam);
+		
+		Button addAllergy = new Button(865, 320, 260, 20, "Add", Color.GRAY, new Action() {
+			
+			@Override
+			public void act() {
+				String change = allergyChange.getText();
+				allergies.add(new TextArea(10, y, 340, 45, change));
+			}
+		});
+		
+		Button remAllergy = new Button(865, 350, 260, 20, "Remove", Color.GRAY, new Action() {
+			
+			@Override
+			public void act() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		viewObjects.add(addAllergy);
+		viewObjects.add(remAllergy);
 	}
 	
+	public void populateScroll(int x) {
+		if (x == 1) {
+			drawTextArea(new TextArea(10, -10, 340, 50, "FAMILY HISTORY"), 35, famHist);
+			for(int i = 1; i < maxLines("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/health") + 1; i++) {
+				drawTextArea(new TextArea(10, 25*(i) + 5, 340, 45, readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/health")), 24, famHist);
+			}
+			if(readLine(1, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/health") == null){
+				drawTextArea(new TextArea(10, 25 + 5, 340, 45, "NONE"), 24, famHist);
+			}
+			famHist.update();
+		}
+		else {
+			drawTextArea(new TextArea(10, -10, 340, 50, "ALLERGIES"), 35, allergies);
+			for(int i = 1; i < maxLines("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/allergies") + 1; i++) {
+				drawTextArea(new TextArea(10, 25*(i) + 5, 340, 45, readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/allergies")), 24, allergies);
+			}
+			if(readLine(1, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/allergies") == null){
+				drawTextArea(new TextArea(10, 25 + 5, 340, 45, "NONE"), 24, allergies);
+			}
+			allergies.update();
+		}
+	}
+
 	public void drawHead(TextArea head) {
 		head.setCustomTextColor(Color.WHITE);
 		head.setSize(20);
@@ -124,15 +216,5 @@ public class UpdateScreen extends AbstractScreen {
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
-		
-		File nameChange = new File("resources/" + Main.getDoctor() + "/patients/" + nameChange.getText());
-		try {
-		    FileWriter fWriter = new FileWriter(nameChange, false);
-		    fWriter.write(text);
-		    fWriter.close();
-		} catch (IOException e) {
-		    e.printStackTrace();
-		}
-		new File("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient()).renameTo(new File("resources/" + Main.getDoctor() + "/patients/" + nameChange.getText()));
 	}
 }

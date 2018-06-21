@@ -75,23 +75,12 @@ public class PatientInfoScreen extends AbstractScreen {
 		viewObjects.add(famHist); 
 		viewObjects.add(allergies);
 		
-		//for the pop-ups/change to screens
-		
-		Button visits = new Button(575, 375, 150, 150, "Visits", getF(), new Action() {
-			public void act() {
-				PatientInfoScreen.popper = 1;
-				PatientInfoScreen.head = "      Visits      ";
-				Main.main.setScreen(new PatientInfoScreen(getWidth(), getHeight()));
-			}
-		});
-		visits.setSize(20);
-		
-		Button history = new Button(600, 550, 125, 125, "History", getG(), new Action() {
+		Button notes = new Button(600, 550, 125, 125, "Notes", getG(), new Action() {
 			public void act() {
 				Main.main.setScreen(new HistoryScreen(getWidth(), getHeight()));
 			}
 		});
-		history.setSize(20);
+		notes.setSize(20);
 		
 		Button prescripitions = new Button(715, 275, 157, 157, "Prescriptions", getC(), new Action() {
 			public void act() {
@@ -120,14 +109,12 @@ public class PatientInfoScreen extends AbstractScreen {
 		});
 		update.setSize(20);
 	
-		AbstractButton.circleButton(visits);
-		AbstractButton.circleButton(history);
+		AbstractButton.circleButton(notes);
 		AbstractButton.circleButton(prescripitions);
 		AbstractButton.circleButton(immunizations);
 		AbstractButton.circleButton(update);
 		
-		viewObjects.add(visits);
-		viewObjects.add(history);
+		viewObjects.add(notes);
 		viewObjects.add(prescripitions);
 		viewObjects.add(immunizations);
 		viewObjects.add(update);

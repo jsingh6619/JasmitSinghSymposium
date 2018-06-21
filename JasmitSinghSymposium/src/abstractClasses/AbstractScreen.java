@@ -12,6 +12,7 @@ import guiTeacher.interfaces.*;
 import guiTeacher.userInterfaces.*;
 import main.Main;
 import patient.PatientInfoScreen;
+import user.UserInfoScreen;
 
 public abstract class AbstractScreen extends FullFunctionScreen {
 
@@ -38,11 +39,13 @@ public abstract class AbstractScreen extends FullFunctionScreen {
 	public void initAllObjects(List<Visible> viewObjects) {
 		setBackground(getA());
 		
-		Button home = new Button(10, 175, 35, 35, "()", Color.RED, new Action() {
+		Button home = new Button(10, 360, 35, 35, "H", Color.WHITE, new Action() {
 			public void act() {
-				Main.main.setScreen(new PatientInfoScreen(getWidth(), getHeight()));
+				Main.main.setScreen(new UserInfoScreen(getWidth(), getHeight()));
 			}
 		});
+		
+		
 		
 		viewObjects.add(home);
 	}

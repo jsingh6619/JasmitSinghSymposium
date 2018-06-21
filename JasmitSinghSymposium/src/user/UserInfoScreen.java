@@ -20,7 +20,7 @@ public class UserInfoScreen extends AbstractScreen {
 	}
 
 	public void initAllObjects(List<Visible> viewObjects) {
-		super.initAllObjects(viewObjects);
+		setBackground(getA());
 		file = "resources/" + Main.getDoctor() + "/" + Main.getDoctor() + ".txt";
 		Button back = new Button(750, 50, 400, 188, "", getD(), new Action() {
 			public void act() {
@@ -34,21 +34,19 @@ public class UserInfoScreen extends AbstractScreen {
 		drawTextArea(new TextArea(765, 150, 400, 225, readLine(5,file)), 18);
 		drawTextArea(new TextArea(765, 188, 400, 225, readLine(8,file)), 18);
 
-		Button patients = new Button(225, 203, 185, 185, "Patients", getG(), new Action() {
+		Button patients = new Button(50, 50, 650, 620, "Patients", getG(), new Action() {
 			public void act() {
 				Main.main.setScreen(new PatientsScreen(getWidth(), getHeight()));
 			}
 		});
 		patients.setSize(20);
-		AbstractButton.circleButton(patients);
 		
-		Button about = new Button(875, 380, 185, 185, "About", getF(),  new Action() {
+		Button about = new Button(750, 288, 400, 382, "About", getF(),  new Action() {
 			public void act() {
 				Main.main.setScreen(new AboutScreen(getWidth(), getHeight()));
 			}
 		});
 		about.setSize(20);
-		AbstractButton.circleButton(about);
 		
 		viewObjects.add(patients);
 		viewObjects.add(about);

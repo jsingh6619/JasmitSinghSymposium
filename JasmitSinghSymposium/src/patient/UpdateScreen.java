@@ -114,7 +114,7 @@ public class UpdateScreen extends AbstractScreen {
 		viewObjects.add(famHist);
 		viewObjects.add(allergies);
 		
-		famHistChange = new TextField(605, 330, 255, 35, "k");
+		famHistChange = new TextField(605, 330, 255, 35, "");
 		famHistChange.setSize(20);
 		viewObjects.add(famHistChange);
 		
@@ -122,7 +122,7 @@ public class UpdateScreen extends AbstractScreen {
 		allergyChange.setSize(20);
 		viewObjects.add(allergyChange);
 		
-		Button addFam = new Button(865, 320, 260, 20, "Add", Color.GRAY, new Action() {
+		Button addFam = new Button(865, 320, 260, 50, "Add", Color.GRAY, new Action() {
 			public void act() {
 				reWrite(1);
 				Main.main.setScreen(new UpdateScreen(getWidth(), getHeight()));
@@ -131,7 +131,7 @@ public class UpdateScreen extends AbstractScreen {
 		
 		viewObjects.add(addFam);
 		
-		Button addAllergy = new Button(865, 320, 260, 50, "Add", Color.GRAY, new Action() {
+		Button addAllergy = new Button(865, 570, 260, 50, "Add", Color.GRAY, new Action() {
 			public void act() {
 				reWrite(2);
 				Main.main.setScreen(new UpdateScreen(getWidth(), getHeight()));

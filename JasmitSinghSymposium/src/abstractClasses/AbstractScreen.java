@@ -4,11 +4,14 @@ import java.awt.*;
 import java.io.*;
 import java.util.List;
 
+import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.ScrollablePane;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.*;
 import guiTeacher.userInterfaces.*;
+import main.Main;
+import patient.PatientInfoScreen;
 
 public abstract class AbstractScreen extends FullFunctionScreen {
 
@@ -34,6 +37,14 @@ public abstract class AbstractScreen extends FullFunctionScreen {
 	//add other components I want displayed on most screens (call using super.initAllObjects)
 	public void initAllObjects(List<Visible> viewObjects) {
 		setBackground(getA());
+		
+		Button home = new Button(10, 175, 35, 35, "()", Color.RED, new Action() {
+			public void act() {
+				Main.main.setScreen(new PatientInfoScreen(getWidth(), getHeight()));
+			}
+		});
+		
+		viewObjects.add(home);
 	}
 
 	public static Color getA() {

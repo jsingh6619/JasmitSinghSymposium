@@ -42,14 +42,6 @@ public class UserInfoScreen extends AbstractScreen {
 		patients.setSize(20);
 		AbstractButton.circleButton(patients);
 		
-		Button calendar = new Button(356, 440, 240, 240, "Calendar", getE(),  new Action() {
-			public void act() {
-				Main.main.setScreen(new CalendarScreen(getWidth(), getHeight()));
-			}
-		});
-		calendar.setSize(20);
-		AbstractButton.circleButton(calendar);
-		
 		Button about = new Button(875, 380, 185, 185, "About", getF(),  new Action() {
 			public void act() {
 				Main.main.setScreen(new AboutScreen(getWidth(), getHeight()));
@@ -59,7 +51,6 @@ public class UserInfoScreen extends AbstractScreen {
 		AbstractButton.circleButton(about);
 		
 		viewObjects.add(patients);
-		viewObjects.add(calendar);
 		viewObjects.add(about);
 	}
 }

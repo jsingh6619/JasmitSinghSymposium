@@ -5,7 +5,6 @@ import java.awt.Component;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 
 import abstractClasses.AbstractScreen;
@@ -29,6 +28,7 @@ public class UpdateScreen extends AbstractScreen {
 	private TextField insurancePlanChange;
 	private TextField famHistChange;
 	private TextField allergyChange;
+	private String all = "";
 	public static ScrollablePane famHist;
 	public static ScrollablePane allergies;
 	public static TextField allegies;
@@ -95,7 +95,7 @@ public class UpdateScreen extends AbstractScreen {
 		Button update = new Button(150, 550, 400, 100, "UPDATE", Color.GRAY, new Action() {
 			
 			public void act() {
-				reWrite();
+				reWrite(0);
 				PatientInfoScreen.popper = 0;
 				Main.main.setScreen(new PatientInfoScreen(getWidth(), getHeight()));
 			}
@@ -114,7 +114,7 @@ public class UpdateScreen extends AbstractScreen {
 		viewObjects.add(famHist);
 		viewObjects.add(allergies);
 		
-		famHistChange = new TextField(605, 330, 255, 35, "");
+		famHistChange = new TextField(605, 330, 255, 35, "k");
 		famHistChange.setSize(20);
 		viewObjects.add(famHistChange);
 		
@@ -123,48 +123,22 @@ public class UpdateScreen extends AbstractScreen {
 		viewObjects.add(allergyChange);
 		
 		Button addFam = new Button(865, 320, 260, 20, "Add", Color.GRAY, new Action() {
-			
-			@Override
 			public void act() {
-				Component[] comp = famHist.getComponents();
-				System.out.println(comp.length);
-				String change = famHistChange.getText();
-//				famHist.add(new TextArea(10, y, 340, 45, change));
-//				for(int i = 0; i < famHist.getComponentCount(); i++)
-			}
-		});
-		
-		Button remFam = new Button(865, 350, 260, 20, "Remove", Color.GRAY, new Action() {
-			
-			@Override
-			public void act() {
-				
+				reWrite(1);
+				Main.main.setScreen(new UpdateScreen(getWidth(), getHeight()));
 			}
 		});
 		
 		viewObjects.add(addFam);
-		viewObjects.add(remFam);
 		
-		Button addAllergy = new Button(865, 320, 260, 20, "Add", Color.GRAY, new Action() {
-			
-			@Override
+		Button addAllergy = new Button(865, 320, 260, 50, "Add", Color.GRAY, new Action() {
 			public void act() {
-				String change = allergyChange.getText();
-				allergies.add(new TextArea(10, y, 340, 45, change));
-			}
-		});
-		
-		Button remAllergy = new Button(865, 350, 260, 20, "Remove", Color.GRAY, new Action() {
-			
-			@Override
-			public void act() {
-				// TODO Auto-generated method stub
-				
+				reWrite(2);
+				Main.main.setScreen(new UpdateScreen(getWidth(), getHeight()));
 			}
 		});
 		
 		viewObjects.add(addAllergy);
-		viewObjects.add(remAllergy);
 	}
 	
 	public void populateScroll(int x) {
@@ -196,25 +170,61 @@ public class UpdateScreen extends AbstractScreen {
 		getViewObjects().add(head);
 	}
 	
-	public void reWrite() {
-		File oldFile = new File("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info");
-		String notes = "";
-		for (int i = 10; i < maxLines("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info") + 1; i++) {
-			if(i != 10) {
-				notes += "\n";
+	public void reWrite(int x) {
+		if(x == 0) {
+			File oldFile = new File("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info");
+			String notes = "";
+			for (int i = 10; i < maxLines("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info") + 1; i++) {
+				if(i != 10) {
+					notes += "\n";
+				}
+				notes += readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info");
 			}
-			notes += readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info");
+			oldFile.delete();
+			
+			File newFile = new File("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info");
+			String text = birthdayChange.getText() + "\n" + numberChange.getText() + "\n" + genderChange.getText() + "\n\n" + insuranceCompanyChange.getText() + "\n" + insuranceIDChange.getText() + "\n" + insurancePlanChange.getText()  + "\n" + insuranceNumberChange.getText() + "\n\n" + notes;
+			try {
+			    FileWriter fWriter = new FileWriter(newFile, false);
+			    fWriter.write(text);
+			    fWriter.close();
+			} catch (IOException e) {
+			    e.printStackTrace();
+			}
 		}
-		oldFile.delete();
-		
-		File newFile = new File("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/info");
-		String text = birthdayChange.getText() + "\n" + numberChange.getText() + "\n" + genderChange.getText() + "\n\n" + insuranceCompanyChange.getText() + "\n" + insuranceIDChange.getText() + "\n" + insurancePlanChange.getText()  + "\n" + insuranceNumberChange.getText() + "\n\n" + notes;
-		try {
-		    FileWriter fWriter = new FileWriter(newFile, false);
-		    fWriter.write(text);
-		    fWriter.close();
-		} catch (IOException e) {
-		    e.printStackTrace();
+		if(x == 1) {
+			File oldFile = new File("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/health");
+			for (int i = 1; i < maxLines("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/health") + 1; i++) {
+				all += readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/health") + "\n";
+			}
+			all += famHistChange.getText();
+			System.out.println(all);
+			oldFile.delete();
+			File newFile = new File("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/health");
+			try {
+			    FileWriter fWriter = new FileWriter(newFile, false);
+			    fWriter.write(all);
+			    fWriter.close();
+			} catch (IOException e) {
+			    e.printStackTrace();
+			}
+		}
+		if(x == 2) {
+			File oldFile = new File("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/allergies");
+			for (int i = 1; i < maxLines("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/allergies") + 1; i++) {
+				all += readLine(i, "resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/allergies") + "\n";
+			}
+			all += famHistChange.getText();
+			System.out.println(all);
+			oldFile.delete();
+			File newFile = new File("resources/" + Main.getDoctor() + "/patients/" + Main.getPatient() + "/allergies");
+			try {
+			    FileWriter fWriter = new FileWriter(newFile, false);
+			    fWriter.write(all);
+			    fWriter.close();
+			} catch (IOException e) {
+			    e.printStackTrace();
+			}
 		}
 	}
 }
